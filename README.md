@@ -68,12 +68,12 @@ The **UMN Discover App** is a web tool designed to help student life at the Univ
 
 <h1 align="center">Dev Server Set Up</h1>
 
-## Step 1: Install Node.js and Git in Command Prompt
+## Step 1: Install Node.js and Git
 Node: https://nodejs.org/en/download
 <br>
 Git: https://git-scm.com/downloads
 
-## Step 2: Install npm and pnpm globally
+## Step 2: Install npm and pnpm globally in Command Prompt
 ```npm install -g npm```
 <br>
 ```npm install -g pnpm```
