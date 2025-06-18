@@ -93,4 +93,5 @@ Git: https://git-scm.com/downloads
 The development server will start (default is http://localhost:3000)
 > (Note: The port may change later depending on setup)
 
+
 <p align="center"><i>Built by students, for students — UMN</i></p>
