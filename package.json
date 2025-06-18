@@ -1,0 +1,16 @@
+{
+  "name": "umn-discover-app",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\"",
+    "build": "pnpm --filter client build && pnpm --filter server build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ]
+}
