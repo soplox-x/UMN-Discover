@@ -31,7 +31,6 @@ This roadmap outlines major development milestones for the Platform. Tasks are g
 - [ ] Add building navigation features
 - [ ] Integrate ranked locations into GPS system
 - [ ] Test route accuracy and edge cases
-- [ ] Assist Team 2 after GPS core is complete
 
 ## Phase 4: Integration & Testing
 
