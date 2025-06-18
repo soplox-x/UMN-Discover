@@ -78,8 +78,12 @@ Git: https://git-scm.com/downloads
 <br>
 ```npm install -g pnpm```
 
-## Step 3: Clone the GitHub repository
+## Step 3: Fork this repo and clone the repo you just forked.
+ex:
+<br>
+
 ```git clone https://github.com/CSCI-Social-Club-UMN/umn-nav```
+> **!** replace this link to your forked repo
 
 ## Step 4: Navigate into the project folder
 ```cd umn-nav```
