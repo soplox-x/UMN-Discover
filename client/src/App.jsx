@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
-import './App.css';
 import Calendar from './components/Calendar'; 
+import Header from './components/Header';
+import Footer from './components/Footer';
+import './App.css';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -12,21 +14,19 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
-    if (darkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
+    document.body.classList.toggle('dark-mode', darkMode);
   }, [darkMode]);
 
   return (
     <Router>
       <div className={`App ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+        <Header darkMode={darkMode} setDarkMode={setDarkMode} />
         <Routes>
           <Route path="/" element={<HomePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
-          <Route path="*" element={<HomePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="*" element={<HomePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

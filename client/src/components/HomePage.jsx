@@ -51,38 +51,6 @@ const HomePage = ({ darkMode, setDarkMode }) => {
 
   return (
     <div className={`home-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-      <header className="header">
-        <div className="header-content">
-        <Link to="/" className="logo-container">
-        <motion.div
-            className="logo"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-        >
-            <img src="/gopher_icon.svg" alt="UMN Gopher Logo" className="logo-icon" />
-        </motion.div>
-        <div>
-            <h1 className="app-name">UMN Discover</h1>
-            <p className="tagline">University of Minnesota</p>
-        </div>
-        </Link>
-          <nav className="nav-links">
-            <Link to="/features">Features</Link>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/calendar">Calendar</Link>
-            <motion.button 
-              className="theme-toggle"
-              onClick={toggleDarkMode}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {darkMode ? <FaSun /> : <FaMoon />}
-            </motion.button>
-            <Link to="/account" className="account">Account</Link>
-          </nav>
-        </div>
-      </header>
       <section className="hero-section">
         <div className="hero-content">
           <motion.h2 
@@ -206,52 +174,6 @@ const HomePage = ({ darkMode, setDarkMode }) => {
           </motion.div>
         </div>
       </section>
-      <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-info">
-            <div className="footer-logo">
-              <div className="footer-logo-img">
-                <FaGraduationCap />
-              </div>
-              <h4 className="footer-title">UMN Discover</h4>
-            </div>
-            <p className="footer-description">
-              Built by students, for students.
-            </p>
-            <div className="social-links">
-              <a href="https://github.com/CSCI-Social-Club-UMN" target="_blank" rel="noopener noreferrer">
-                <FaGithub />
-              </a>
-              <a href="https://discord.gg/XuCXuTsFut" target="_blank" rel="noopener noreferrer">
-                <FaDiscord />
-              </a>
-            </div>
-            <div className="footer-copyright">
-              © {new Date().getFullYear()} UMN Discover. All rights reserved.
-            </div>
-          </div>
-          <div className="footer-links">
-            <div className="footer-links-column">
-              <h5 className="footer-links-title">Quick Links</h5>
-              <ul>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/features">Features</Link></li>
-                <li><Link to="/support">Support</Link></li>
-                <li><Link to="/privacy">Privacy</Link></li>
-              </ul>
-            </div>
-            <div className="footer-links-column">
-              <h5 className="footer-links-title">Resources</h5>
-              <ul>
-                <li><Link to="/campus-map">Campus Map</Link></li>
-                <li><Link to="/calendar">Calendar</Link></li>
-                <li><Link to="/student-services">Student Services</Link></li>
-                <li><Link to="/help-center">Help Center</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
