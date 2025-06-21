@@ -59,7 +59,7 @@ const HomePage = ({ darkMode, setDarkMode }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            University Of Minnesota <span className="highlight">Descover</span>
+            University Of Minnesota <span className="highlight">Discover</span>
           </motion.h2>
           <motion.p 
             className="hero-description"

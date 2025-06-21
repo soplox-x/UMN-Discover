@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      body-parser:
+        specifier: ^2.2.0
+        version: 2.2.0
+      merge-descriptors:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       concurrently:
         specifier: ^8.2.0
@@ -60,6 +67,9 @@ importers:
 
   server:
     dependencies:
+      body-parser:
+        specifier: ^2.2.0
+        version: 2.2.0
       cors:
         specifier: ^2.8.5
         version: 2.8.5

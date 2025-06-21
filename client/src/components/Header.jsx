@@ -20,10 +20,11 @@ const Header = ({ darkMode, setDarkMode }) => {
           </div>
         </Link>
         <nav className="nav-links">
-          <Link to="/features">Features</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to="/map">Map</Link>
+          <Link to="/clubs">Clubs</Link>
           <Link to="/calendar">Calendar</Link>
+          <Link to="/grades">Grades</Link>
+          <Link to="/contact">Contact</Link>
           <motion.button 
             className="theme-toggle"
             onClick={toggleDarkMode}
