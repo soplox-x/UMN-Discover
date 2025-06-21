@@ -12,5 +12,9 @@
   "workspaces": [
     "client",
     "server"
-  ]
+  ],
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "merge-descriptors": "^2.0.0"
+  }
 }
