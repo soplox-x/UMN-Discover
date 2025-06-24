@@ -25,7 +25,9 @@ const Header = ({ darkMode, setDarkMode }) => {
           <Link to="/calendar">Calendar</Link>
           <Link to="/grades">Grades</Link>
           <Link to="/contact">Contact</Link>
-          <motion.button 
+          <Link to="/professors">Professors</Link>
+          <Link to="/studyspots">Study Spots</Link>
+          <motion.button
             className="theme-toggle"
             onClick={toggleDarkMode}
             whileHover={{ scale: 1.1 }}
