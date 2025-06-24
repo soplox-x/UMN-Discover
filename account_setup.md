@@ -1,5 +1,16 @@
 # UMN Discover - Account Setup (PostgreSQL)
-For Windows/macOS users using pgAdmin
+
+# For linux users
+```
+sudo apt -y install postgresql
+sudo -u postgres initdb --locale=C.UTF-8 --encoding=UTF8 -D /var/lib/postgres/data --data-checksums
+sudo systemctl enable --now postgresql
+sudo -u postgres createuser umn-app
+sudo -u postgres createdb umn_discover -O umn-app
+sudo -u postgres psql -c "ALTER USER \"umn-app\" WITH PASSWORD 'umn1234';"
+```
+
+# For Windows/macOS users using pgAdmin
 
 
 ## Step 1: Install PostgreSQL + pgAdmin
