@@ -1,0 +1,23 @@
+h1{
+    width: 66%;
+    margin: auto;
+}
+
+.button{
+    background: linear-gradient(to top left, #ffcc33, #ffe066);
+    color: #7a0019;
+    padding: 10px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}

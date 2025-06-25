@@ -1,6 +1,9 @@
-function SpotCard (){
+function SpotCard (spot){
     return(
-        <h1>Hi</h1>
+        <>
+            <h4>{spot.name}</h4>
+            <p>{spot.campus}</p>
+        </>
     )
 }
 
