@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import Profile from './components/Profile';
 import './App.css';
 import Professors from './components/Professors';
-import StudySpots from './components/StudySpots';
+import StudySpots from './components/study_spot_code/StudySpots';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
