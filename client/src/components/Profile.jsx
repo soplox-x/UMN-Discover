@@ -22,7 +22,7 @@ const Profile = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:3001/api/auth/profile', {
+      const response = await fetch('/api/auth/profile', {
         headers: {
           'Authorization': `Bearer ${token}`
         }

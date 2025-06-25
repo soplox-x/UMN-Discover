@@ -54,7 +54,7 @@ const Header = ({ darkMode, setDarkMode }) => {
   const handleDeleteAccount = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch('http://localhost:3001/api/auth/delete-account', {
+      const response = await fetch('/api/auth/delete-account', {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

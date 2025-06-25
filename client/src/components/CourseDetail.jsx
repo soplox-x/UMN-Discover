@@ -22,8 +22,8 @@ const CourseDetail = () => {
         setError(null);
         try {
         const [courseResponse, distributionResponse] = await Promise.all([
-            fetch(`http://localhost:3001/api/grades/course/${encodeURIComponent(courseId)}`),
-            fetch(`http://localhost:3001/api/grades/distribution/${encodeURIComponent(courseId)}`)
+            fetch(`/api/grades/course/${encodeURIComponent(courseId)}`),
+            fetch(`/api/grades/distribution/${encodeURIComponent(courseId)}`)
         ]);
         const courseData = await courseResponse.json();
         const distributionData = await distributionResponse.json();
