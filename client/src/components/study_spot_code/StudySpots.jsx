@@ -18,7 +18,7 @@ function StudySpots() {
 
     return (
         <>
-            <h1>Select a campus to see the study spots on that campus!</h1>
+            <h1 id="instruct">Select a campus to see study spots on that campus!</h1>
             <div className="buttons">
                 <button className="button" onClick={gotoEast}>East Bank Study Spots</button> 
                 <button className="button" onClick={gotoWest}>West Bank Study Spots</button>
