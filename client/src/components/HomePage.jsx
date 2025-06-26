@@ -90,7 +90,6 @@ const HomePage = ({ darkMode, setDarkMode }) => {
     { icon: <FaMapMarkerAlt />, label: "Study Spots", count: "0" }
   ];
 
-  // Create enough duplicates for seamless loop
   const duplicatedFeatures = [...features, ...features, ...features];
 
   const toggleDarkMode = () => {

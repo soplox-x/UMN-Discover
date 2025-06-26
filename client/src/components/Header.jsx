@@ -97,7 +97,7 @@ const Header = ({ darkMode, setDarkMode }) => {
             <Link to="/clubs">Clubs</Link>
             <Link to="/calendar">Calendar</Link>
             <Link to="/grades">Grades</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="/social">Social</Link>
             <Link to="/professors">Professors</Link>
             <Link to="/studyspots">Study Spots</Link>
             <motion.button
