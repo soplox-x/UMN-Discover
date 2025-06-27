@@ -12,6 +12,9 @@ import UserProfile from './components/UserProfile';
 import './App.css';
 import Professors from './components/Professors';
 import StudySpots from './components/study_spot_code/StudySpots';
+import WestBankPage from './components/study_spot_code/WestBankPage';
+import EastBankPage from './components/study_spot_code/EastBankPage';
+import StPaulPage from './components/study_spot_code/StPaulPage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -38,6 +41,9 @@ function App() {
           <Route path="/social" element={<Social />} />
           <Route path="/profile/:username" element={<UserProfile />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/studyspots/westbank" element={<WestBankPage />} />
+          <Route path="/studyspots/eastbank" element={<EastBankPage />} />
+          <Route path="/studyspots/stpaul" element={<StPaulPage />} />
           <Route path="*" element={<HomePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
         </Routes>
         <Footer />

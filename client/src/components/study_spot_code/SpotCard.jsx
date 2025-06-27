@@ -1,6 +1,12 @@
-function SpotCard (){
+import "../../styles/study_spots_styles/SpotCard.css";
+
+function SpotCard (spot){
     return(
-        <h1>Hi</h1>
+        <div className="card">
+            <h4>{spot.name}</h4>
+            <h1>IMAGE WILL GO HERE</h1>
+            <p>{spot.campus}</p>
+        </div>
     )
 }
 
