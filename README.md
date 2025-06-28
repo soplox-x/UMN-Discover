@@ -97,5 +97,8 @@ ex:
 The development server will start (default is http://localhost:3000)
 > (Note: The port may change later depending on setup)
 
+# **Attributions**
+Past grade and SRT data obtained from Social Coding @ UMN via the University of Minnesota Office of Data Access and Privacy and 
+the Office of Undergraduate Education Academic Support Resources
 
 <p align="center"><i>Built by students, for students — UMN</i></p>
