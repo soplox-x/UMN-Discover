@@ -25,10 +25,10 @@ const Footer = () => {
             </a>
           </div>
           <div className="footer-copyright">
-            © {new Date().getFullYear()} A CSCI Social Club. All rights reserved.
+            © {new Date().getFullYear()} CSCI Social Club. All rights reserved.
           </div>
           <p className="footer-disclaimer">
-             A CSCI Social Club is a registered student organization and is independent from the University of Minnesota. This website is not affiliated with or endorsed by Regents of the University of Minnesota.
+             CSCI Social Club is a registered student organization and is independent from the University of Minnesota. This website is not affiliated with or endorsed by Regents of the University of Minnesota.
           </p>
         </div>
         <div className="footer-links">
