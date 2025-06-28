@@ -124,7 +124,7 @@ const Header = ({ darkMode, setDarkMode, user, onAuthSuccess, onLogout }) => {
                       </>
                     ) : (
                       <>
-                        <button className="dropdown-item" onClick={openAuthModal}>Sign In</button>
+                        <button className="dropdown-item" onClick={openAuthModal}>Google Sign In</button>
                       </>
                     )}
                   </motion.div>
