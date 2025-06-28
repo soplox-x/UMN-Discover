@@ -16,12 +16,53 @@ export const initializeDatabase = async () => {
         id SERIAL PRIMARY KEY,
         email VARCHAR(255) UNIQUE NOT NULL,
         username VARCHAR(50) UNIQUE NOT NULL,
-        password_hash VARCHAR(255) NOT NULL,
+        google_id VARCHAR(255) UNIQUE,
+        display_name VARCHAR(255),
         bio TEXT,
         avatar_url VARCHAR(500),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
+    const passwordColumnExists = await pool.query(`
+      SELECT EXISTS (
+        SELECT FROM information_schema.columns 
+        WHERE table_schema = 'public' 
+        AND table_name = 'users' 
+        AND column_name = 'password_hash'
+      );
+    `);
+
+    if (passwordColumnExists.rows[0].exists) {
+      await pool.query(`ALTER TABLE users DROP COLUMN password_hash`);
+      console.log('Removed password_hash column');
+    }
+    const googleIdExists = await pool.query(`
+      SELECT EXISTS (
+        SELECT FROM information_schema.columns 
+        WHERE table_schema = 'public' 
+        AND table_name = 'users' 
+        AND column_name = 'google_id'
+      );
+    `);
+    
+    if (!googleIdExists.rows[0].exists) {
+      await pool.query(`ALTER TABLE users ADD COLUMN google_id VARCHAR(255) UNIQUE`);
+      console.log('Added google_id column');
+    }
+
+    const displayNameExists = await pool.query(`
+      SELECT EXISTS (
+        SELECT FROM information_schema.columns 
+        WHERE table_schema = 'public' 
+        AND table_name = 'users' 
+        AND column_name = 'display_name'
+      );
+    `);
+
+    if (!displayNameExists.rows[0].exists) {
+      await pool.query(`ALTER TABLE users ADD COLUMN display_name VARCHAR(255)`);
+      console.log('Added display_name column');
+    }
 
     const bioColumnExists = await pool.query(`
       SELECT EXISTS (
@@ -141,7 +182,7 @@ export const initializeDatabase = async () => {
     await pool.query(`DROP TABLE IF EXISTS groups CASCADE`);
     console.log('Removed group-related tables');
 
-    console.log('Database initialized successfully');
+    console.log('Database initialized successfully with Google OAuth support');
   } catch (error) {
     console.error('Database initialization error:', error);
   }

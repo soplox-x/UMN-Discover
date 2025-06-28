@@ -4,7 +4,7 @@ import { FaHeart, FaComment, FaImage, FaPaperPlane, FaUser, FaSearch, FaTimes, F
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Social.css';
 
-const Social = () => {
+const Social = ({ user }) => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('feed');
   const [posts, setPosts] = useState([]);
@@ -12,7 +12,6 @@ const Social = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
   const [expandedPost, setExpandedPost] = useState(null);
   const [comments, setComments] = useState({});
   const [newComment, setNewComment] = useState({});
@@ -20,13 +19,6 @@ const Social = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    const userData = localStorage.getItem('userData');
-    
-    if (token && userData) {
-      setUser(JSON.parse(userData));
-    }
-    
     if (activeTab === 'feed') {
       fetchFeed();
     } else if (activeTab === 'explore') {
@@ -62,6 +54,11 @@ const Social = () => {
   const fetchFeed = async () => {
     try {
       const token = localStorage.getItem('authToken');
+      if (!token) {
+        console.log('No auth token found');
+        return;
+      }
+
       const response = await fetch('/api/social/feed', {
         headers: {
           'Authorization': `Bearer ${token}`

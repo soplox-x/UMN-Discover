@@ -4,7 +4,7 @@ import { FaUser, FaArrowLeft, FaUsers, FaHeart, FaComment, FaUserPlus, FaUserMin
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/UserProfile.css';
 
-const UserProfile = () => {
+const UserProfile = ({ user: currentUser }) => {
   const { username } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -14,16 +14,8 @@ const UserProfile = () => {
   const [activeTab, setActiveTab] = useState('posts');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    const userData = localStorage.getItem('userData');
-    
-    if (token && userData) {
-      setCurrentUser(JSON.parse(userData));
-    }
-    
     fetchUserProfile();
   }, [username]);
 

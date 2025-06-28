@@ -6,7 +6,7 @@ import path from 'path';
 import fs from 'fs';
 
 const router = express.Router();
-const JWT_SECRET = 'umn-discover-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET || 'umn-discover-secret-key';
 
 const imagesDir = path.join(process.cwd(), 'images');
 if (!fs.existsSync(imagesDir)) {
@@ -68,6 +68,7 @@ const authenticateToken = (req, res, next) => {
 
   jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) {
+      console.error('JWT verification error:', err);
       return res.status(403).json({
         success: false,
         error: 'Invalid or expired token'

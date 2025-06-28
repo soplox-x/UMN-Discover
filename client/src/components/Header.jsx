@@ -5,21 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import AuthModal from './AuthModal';
 import '../styles/Header.css';
 
-const Header = ({ darkMode, setDarkMode }) => {
+const Header = ({ darkMode, setDarkMode, user, onAuthSuccess, onLogout }) => {
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [authMode, setAuthMode] = useState('login');
-  const [user, setUser] = useState(null);
   const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    const userData = localStorage.getItem('userData');
-    
-    if (token && userData) {
-      setUser(JSON.parse(userData));
-    }
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -35,23 +24,26 @@ const Header = ({ darkMode, setDarkMode }) => {
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   const handleAuthSuccess = (userData, token) => {
-    setUser(userData);
-    localStorage.setItem('authToken', token);
-    localStorage.setItem('userData', JSON.stringify(userData));
+    onAuthSuccess(userData, token);
     setShowAuthModal(false);
     setShowAccountDropdown(false);
-    window.location.reload();
   };
 
   const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userData');
+    onLogout();
     setShowAccountDropdown(false);
-    window.location.reload();
+    fetch('/api/auth/logout', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+      }
+    }).catch(console.error);
   };
 
   const handleDeleteAccount = async () => {
+    if (!confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+      return;
+    }
     try {
       const token = localStorage.getItem('authToken');
       const response = await fetch('/api/auth/delete-account', {
@@ -73,8 +65,7 @@ const Header = ({ darkMode, setDarkMode }) => {
     }
   };
 
-  const openAuthModal = (mode) => {
-    setAuthMode(mode);
+  const openAuthModal = () => {
     setShowAuthModal(true);
     setShowAccountDropdown(false);
   };
@@ -113,7 +104,7 @@ const Header = ({ darkMode, setDarkMode }) => {
                 className="account-button"
                 onClick={() => setShowAccountDropdown(!showAccountDropdown)}
               >
-                {user ? user.username : 'Account'}
+                {user ? (user.displayName || user.username) : 'Account'}
                 <FaChevronDown className={`chevron ${showAccountDropdown ? 'rotated' : ''}`} />
               </button>
               <AnimatePresence>
@@ -133,8 +124,7 @@ const Header = ({ darkMode, setDarkMode }) => {
                       </>
                     ) : (
                       <>
-                        <button className="dropdown-item" onClick={() => openAuthModal('login')}>Log In</button>
-                        <button className="dropdown-item" onClick={() => openAuthModal('signup')}>Sign Up</button>
+                        <button className="dropdown-item" onClick={openAuthModal}>Sign In</button>
                       </>
                     )}
                   </motion.div>
@@ -147,7 +137,6 @@ const Header = ({ darkMode, setDarkMode }) => {
       <AuthModal
         isOpen={showAuthModal}
         onClose={() => setShowAuthModal(false)}
-        mode={authMode}
         onAuthSuccess={handleAuthSuccess}
       />
     </>

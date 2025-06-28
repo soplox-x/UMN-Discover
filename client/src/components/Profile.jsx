@@ -3,14 +3,19 @@ import { FaUser, FaEnvelope, FaCalendarAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import '../styles/Profile.css';
 
-const Profile = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+const Profile = ({ user: propUser }) => {
+  const [user, setUser] = useState(propUser);
+  const [loading, setLoading] = useState(!propUser);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchUserProfile();
-  }, []);
+    if (!propUser) {
+      fetchUserProfile();
+    } else {
+      setUser(propUser);
+      setLoading(false);
+    }
+  }, [propUser]);
 
   const fetchUserProfile = async () => {
     try {
@@ -94,6 +99,17 @@ const Profile = () => {
                 <span>{user?.email}</span>
               </div>
             </div>
+            {user?.display_name && (
+              <div className="info-item">
+                <div className="info-icon">
+                  <FaUser />
+                </div>
+                <div className="info-details">
+                  <label>Display Name</label>
+                  <span>{user.display_name}</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </motion.div>
