@@ -180,7 +180,6 @@ export const initializeDatabase = async () => {
 
     await pool.query(`DROP TABLE IF EXISTS group_memberships CASCADE`);
     await pool.query(`DROP TABLE IF EXISTS groups CASCADE`);
-    console.log('Removed group-related tables');
 
     console.log('Database initialized successfully with Google OAuth support');
   } catch (error) {

@@ -42,8 +42,10 @@ This guide will walk you through setting up Google OAuth authentication for the 
    - **Authorized JavaScript origins**: 
      - `http://localhost:3000` (development)
      - `http://localhost:3001` (development)
+     - `http://your-dmian-name` (productionB)
    - **Authorized redirect URIs**:
-     - `http://localhost:3001/api/auth/google/callback`
+     - `http://localhost:3001/api/auth/google/callback` (development)
+     - `https://your-domain-name/api/auth/google/callback` (production)
 5. Click "Create"
 6. **Save your Client ID and Client Secret!**
 
