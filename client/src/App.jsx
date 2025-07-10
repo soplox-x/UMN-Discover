@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
 import Professors from './components/Professors';
+import ProfessorDetail from './components/ProfessorDetail';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/" element={<HomePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/professors" element={<Professors />} />
+          <Route path="/professor/:professorId" element={<ProfessorDetail />} />
           <Route path="/grades" element={<GradeSearch />} />
           <Route path="/course/:courseId" element={<CourseDetail />} />
           <Route path="*" element={<HomePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
