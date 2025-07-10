@@ -1,0 +1,354 @@
+[
+      {
+    "name": "",
+    "campus": null,
+    "latitude": 44.97343030296971,
+    "longitude": -93.23618164752472,
+    "attributes": {
+      "OBJECTID": 1,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "f33bf406-300f-4947-bc52-db0c699e835a",
+      "CreationDate": 1729786282952,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729786282952,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.97272253576821,
+    "longitude": -93.23520800565203,
+    "attributes": {
+      "OBJECTID": 2,
+      "label": "Food Court ",
+      "symbol": "Dining",
+      "GlobalID": "22ce8335-ac54-4406-af82-5f5cf819aa6e",
+      "CreationDate": 1729786282952,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867533995,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.96971310410475,
+    "longitude": -93.24472282124104,
+    "attributes": {
+      "OBJECTID": 3,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "3820ed40-7a15-415c-8faf-e41de5ad3143",
+      "CreationDate": 1729867228869,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867228869,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.969834551046674,
+    "longitude": -93.24129495811984,
+    "attributes": {
+      "OBJECTID": 4,
+      "label": "Dining hall",
+      "symbol": "Dining",
+      "GlobalID": "75ea26db-1843-4b67-b90d-2f4b97f3237d",
+      "CreationDate": 1729867277398,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867277398,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.9705594321332,
+    "longitude": -93.24484620285574,
+    "attributes": {
+      "OBJECTID": 5,
+      "label": "Dining Hall",
+      "symbol": "Dining",
+      "GlobalID": "263bb537-e36a-4240-867b-825ea2ecb926",
+      "CreationDate": 1729867291651,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867291651,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.97206988789442,
+    "longitude": -93.24331197929918,
+    "attributes": {
+      "OBJECTID": 6,
+      "label": "Coffee Shop/Dining",
+      "symbol": "Dining",
+      "GlobalID": "59fb59f4-fe5b-4c73-8949-616c23139247",
+      "CreationDate": 1729867447257,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867477377,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.97251390878114,
+    "longitude": -93.2365152616543,
+    "attributes": {
+      "OBJECTID": 7,
+      "label": "Dining Hall",
+      "symbol": "Dining",
+      "GlobalID": "7c16fa30-8b9f-4219-83b8-e89f53d46192",
+      "CreationDate": 1729867496356,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867496356,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.973109726278786,
+    "longitude": -93.23142979336178,
+    "attributes": {
+      "OBJECTID": 8,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "43d5333e-7a6b-43aa-83cf-2cd59fdc1b39",
+      "CreationDate": 1729867543925,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867543925,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.97185736386054,
+    "longitude": -93.23066804600151,
+    "attributes": {
+      "OBJECTID": 9,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "cbc9d286-a42f-4688-8954-bf8b9454b9c0",
+      "CreationDate": 1729867557027,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867557027,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.97057081762703,
+    "longitude": -93.22978291702654,
+    "attributes": {
+      "OBJECTID": 10,
+      "label": "Dining Hall",
+      "symbol": "Dining",
+      "GlobalID": "502fc290-f636-4592-b121-0c84932e10d0",
+      "CreationDate": 1729867569503,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867569503,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.97472257698185,
+    "longitude": -93.23353264522954,
+    "attributes": {
+      "OBJECTID": 11,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "795e65ed-2638-4ad0-bc88-c970d277911b",
+      "CreationDate": 1729867583727,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867583727,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.97507929548222,
+    "longitude": -93.2292786617317,
+    "attributes": {
+      "OBJECTID": 12,
+      "label": "Food and Drink",
+      "symbol": "Dining",
+      "GlobalID": "8d282139-0ffe-4010-a9d8-241f4d27e9e4",
+      "CreationDate": 1729867695119,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867720335,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.976608606031405,
+    "longitude": -93.23564622593337,
+    "attributes": {
+      "OBJECTID": 13,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "968abfc6-d173-4ba2-86ae-93d4b6a8032f",
+      "CreationDate": 1729867737594,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729868206916,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.975447396289255,
+    "longitude": -93.23605928612166,
+    "attributes": {
+      "OBJECTID": 14,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "7bde6d69-183e-4ba0-b6a6-36f75c6d4efa",
+      "CreationDate": 1729867746296,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867746296,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.97833899260589,
+    "longitude": -93.23081288528789,
+    "attributes": {
+      "OBJECTID": 15,
+      "label": "Dining Hall",
+      "symbol": "Dining",
+      "GlobalID": "f5817449-f43a-4548-b937-273ba74352ed",
+      "CreationDate": 1729867762687,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867762687,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.98018919196046,
+    "longitude": -93.2400737906674,
+    "attributes": {
+      "OBJECTID": 16,
+      "label": "Dining Hall",
+      "symbol": "Dining",
+      "GlobalID": "d8292183-436c-4bb2-8bf9-89ea8f6acabd",
+      "CreationDate": 1729867773308,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867773308,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.98524490744122,
+    "longitude": -93.18576510748952,
+    "attributes": {
+      "OBJECTID": 17,
+      "label": "Dining Hall",
+      "symbol": "Dining",
+      "GlobalID": "600adfbc-1160-484d-800e-648dedd4ec1f",
+      "CreationDate": 1729867827249,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867827249,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.979105736406424,
+    "longitude": -93.23383484062892,
+    "attributes": {
+      "OBJECTID": 18,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "04f204e6-b834-40f8-bbdd-40faeda38839",
+      "CreationDate": 1729867877142,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867877142,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.98134260911837,
+    "longitude": -93.23542002615676,
+    "attributes": {
+      "OBJECTID": 19,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "8ab8d758-7258-42e5-b438-a4cdfeabf094",
+      "CreationDate": 1729867894085,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867894085,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.973104485942464,
+    "longitude": -93.24638259295229,
+    "attributes": {
+      "OBJECTID": 20,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "24efa366-cfc0-4bbc-8bdd-5e0383ebbfd5",
+      "CreationDate": 1729867942335,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729867942335,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.97402507180288,
+    "longitude": -93.23000026966314,
+    "attributes": {
+      "OBJECTID": 21,
+      "label": "Coffee Shop",
+      "symbol": "Coffee",
+      "GlobalID": "7dadd9cf-a7ba-41ca-b8f3-e511d8886398",
+      "CreationDate": 1729868019169,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729868019169,
+      "Editor": "fimpe001_UServices"
+    }
+  },
+  {
+    "name": null,
+    "campus": null,
+    "latitude": 44.9844632930611,
+    "longitude": -93.18768632523569,
+    "attributes": {
+      "OBJECTID": 22,
+      "label": "Coffee Shop/Dining",
+      "symbol": "Dining",
+      "GlobalID": "3539b49e-479f-4f7b-9ef4-54a3119fe729",
+      "CreationDate": 1729868076574,
+      "Creator": "fimpe001_UServices",
+      "EditDate": 1729868102470,
+      "Editor": "fimpe001_UServices"
+    }
+  }
+]

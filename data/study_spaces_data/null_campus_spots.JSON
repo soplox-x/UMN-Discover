@@ -1,0 +1,173 @@
+[
+    
+  {
+    "name": "Walter Library",
+    "campus": null,
+    "latitude": 44.975397316290156,
+    "longitude": -93.23658979557534,
+    "attributes": {
+      "OBJECTID": 1,
+      "NAME": "Walter Library",
+      "LOCATION": null,
+      "DESCRIPTION": "One of the largest libraries on campus, the historic building is a popular choice for studying. Walter Library has books and resources about physical sciences like chemistry, math and engineering. In addition, Walter has the Toaster Innovation Hub, Makerspace and coffee shop.",
+      "DETAILS_HOURS": "https://www.lib.umn.edu/spaces/walter",
+      "ONLINE_TOUR": "https://youtu.be/UUiQBBjQVrQ?si=uFKs-w1ZfPmfVg1D",
+      "GOOGLE_MAPS_LINK": "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=117+Pleasant+Street+SE+++++Minneapolis,+MN+55455&sll=44.975531,-93.240881&sspn=0.010079,0.016372&ie=UTF8&ll=44.975273,-93.236825&spn=0.010079,0.016372&z=16&iwloc=A",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/walter-library.jpg",
+      "COLLECTIONS": null
+    }
+  },
+  {
+    "name": "Wangensteen Historical Library of Biology and Medicine",
+    "campus": null,
+    "latitude": 44.97240688189431,
+    "longitude": -93.23152887950339,
+    "attributes": {
+      "OBJECTID": 2,
+      "NAME": "Wangensteen Historical Library of Biology and Medicine",
+      "LOCATION": "Phillips-Wangensteen Building 2-340 | U Card access only",
+      "DESCRIPTION": "Wagensteen Library has materials and objects on health, medicine, and biological sciences from 1430 to 1945.",
+      "DETAILS_HOURS": "https://hsl.lib.umn.edu/wangensteen#visit",
+      "ONLINE_TOUR": null,
+      "GOOGLE_MAPS_LINK": "https://goo.gl/maps/RRBQVkcpwDgYp3qc8",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/philips-wangensteen.jpg",
+      "COLLECTIONS": null
+    }
+  },
+  {
+    "name": "Architecture and Landscape Architecture Library",
+    "campus": null,
+    "latitude": 44.976302478250695,
+    "longitude": -93.23308856683926,
+    "attributes": {
+      "OBJECTID": 4,
+      "NAME": "Architecture and Landscape Architecture Library",
+      "LOCATION": "Rapson Hall 210",
+      "DESCRIPTION": "Study space and books on architecture, landscape architecture, city planning, and building technology.",
+      "DETAILS_HOURS": "https://www.lib.umn.edu/spaces/architecture",
+      "ONLINE_TOUR": null,
+      "GOOGLE_MAPS_LINK": "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=89+Church+Street+SE+Minneapolis,+MN+55455&sll=44.972358,-93.230281&sspn=0.010186,0.017316&ie=UTF8&ll=44.97629,-93.233221&spn=0.010185,0.017316&z=16&iwloc=A",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/rapson.jpg",
+      "COLLECTIONS": null
+    }
+  },
+  {
+    "name": "Wilson Library",
+    "campus": null,
+    "latitude": 44.97109279029922,
+    "longitude": -93.24361295202834,
+    "attributes": {
+      "OBJECTID": 6,
+      "NAME": "Wilson Library",
+      "LOCATION": null,
+      "DESCRIPTION": "Wilson Library is the largest library on campus. It has a large collection of books on the arts, humanities, and social sciences such as business, psychology, education, history, literature, and government publications. In addition, Wilson has the Ames Library of South Asia, John R. Borchert Map Library, and the East Asian Library.",
+      "DETAILS_HOURS": "https://www.lib.umn.edu/spaces/wilson",
+      "ONLINE_TOUR": "https://youtu.be/JrRI9pJxJKI?si=vA_z8LRddbcuMory",
+      "GOOGLE_MAPS_LINK": "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=309+19th+Avenue+S+Minneapolis,+MN+55455&sll=44.971526,-93.245682&sspn=0.009594,0.016201&ie=UTF8&ll=44.971037,-93.245645&spn=0.009594,0.016201&z=16&iwloc=A",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/wilson-library.jpg",
+      "COLLECTIONS": null
+    }
+  },
+  {
+    "name": "Music Library",
+    "campus": null,
+    "latitude": 44.97132908953077,
+    "longitude": -93.2419064476357,
+    "attributes": {
+      "OBJECTID": 7,
+      "NAME": "Music Library",
+      "LOCATION": "Ferguson Hall 70",
+      "DESCRIPTION": "The Music Library has study space and musical scores, recordings, and books covering classical music, opera, history of music theory, with smaller collections of non-Western and music, including folk, jazz, and rock.",
+      "DETAILS_HOURS": "https://www.lib.umn.edu/spaces/music",
+      "ONLINE_TOUR": "https://youtu.be/On024RDQfQY?si=-OwswBIp6769MmS7",
+      "GOOGLE_MAPS_LINK": "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=2106+4th+Street+S+Minneapolis,+MN+55455&sll=44.981511,-93.180993&sspn=0.00768,0.015149&ie=UTF8&ll=44.970779,-93.242319&spn=0.007681,0.015149&z=16&iwloc=A",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/ferguson.jpg",
+      "COLLECTIONS": null
+    }
+  },
+  {
+    "name": "Elmer L. Andersen Library",
+    "campus": null,
+    "latitude": 44.97334777122845,
+    "longitude": -93.24297399833297,
+    "attributes": {
+      "OBJECTID": 8,
+      "NAME": "Elmer L. Andersen Library",
+      "LOCATION": null,
+      "DESCRIPTION": "Elmer L. Andersen Library is the home of our Archives and Special Collections with historic and unique materials. Visitors can view exhibits and events. It has limited study space. All are welcome to use archival collections and rare materials. Due to the nature of archival collections, they are in secure storage. Materials can be pulled from storage and viewed in the Reading Room. ",
+      "DETAILS_HOURS": "https://www.lib.umn.edu/spaces/andersen",
+      "ONLINE_TOUR": null,
+      "GOOGLE_MAPS_LINK": "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=++%09+++++++222+21st+Avenue+South++++++Minneapolis,+MN+55455+&sll=44.974681,-93.23247&sspn=0.007681,0.016651&ie=UTF8&ll=44.973223,-93.237212&spn=0.007681,0.016651&z=16&iwloc=A",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/andersen-library.jpg",
+      "COLLECTIONS": "Collections include: \r\n• Charles Babbage Institute Archives\r\n• Children’s Literature Research Collections\r\n• Givens Collection of African American Literature\r\n• Immigration History Research Center Archives\r\n• James Ford Bell Library\r\n• Kautz Family YMCA Archives\r\n• Northwest Architectural Archives\r\n• Performing Arts Archives\r\n• Sherlock Holmes Collection\r\n• Social Welfare History Archives\r\n• Tretter Collection in Gay, Lesbian, Bisexual, and Transgender Studies\r\n• University of Minnesota Archives\r\n• Upper Midwest Jewish Archives\r\n• Upper Midwest Literary Archives"
+    }
+  },
+  {
+    "name": "Law Library",
+    "campus": null,
+    "latitude": 44.9734490234855,
+    "longitude": -93.24461700081817,
+    "attributes": {
+      "OBJECTID": 9,
+      "NAME": "Law Library",
+      "LOCATION": "Mondale Hall",
+      "DESCRIPTION": "The Law Library has collections of legal research including state, federal, and international legal sources. ",
+      "DETAILS_HOURS": "https://law.umn.edu/library",
+      "ONLINE_TOUR": null,
+      "GOOGLE_MAPS_LINK": "https://www.google.com/maps/place/Walter+F.+Mondale+Hall/@44.9734019,-93.2472316,17z/data=!3m1!4b1!4m5!3m4!1s0x52b32d6a0e49e927:0x8b51dc91fd152fb6!8m2!3d44.9733981!4d-93.2450429?hl=en",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/mondale.jpg",
+      "COLLECTIONS": null
+    }
+  },
+  {
+    "name": "Magrath Library",
+    "campus": null,
+    "latitude": 44.98416623242119,
+    "longitude": -93.18383217641122,
+    "attributes": {
+      "OBJECTID": 10,
+      "NAME": "Magrath Library",
+      "LOCATION": null,
+      "DESCRIPTION": "Magrath Library is the largest library on the St. Paul campus with lots of study space and a late-night study space. It has books about agriculture, food science, life sciences, design, and social work. ",
+      "DETAILS_HOURS": "https://www.lib.umn.edu/spaces/magrath",
+      "ONLINE_TOUR": "https://youtu.be/7rGTot2zlCc?si=G5iCvGE2SXj7-nte",
+      "GOOGLE_MAPS_LINK": "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=1984+Buford+Avenue+++++St.+Paul,+MN+55108&sll=44.97925,-93.224466&sspn=0.00768,0.015149&ie=UTF8&ll=44.98529,-93.186228&spn=0.007679,0.015149&z=16&iwloc=A",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/magrath-library.jpg",
+      "COLLECTIONS": null
+    }
+  },
+  {
+    "name": "Natural Resources Library",
+    "campus": null,
+    "latitude": 44.98764432662349,
+    "longitude": -93.18404074815223,
+    "attributes": {
+      "OBJECTID": 11,
+      "NAME": "Natural Resources Library",
+      "LOCATION": "Hodson Hall 375",
+      "DESCRIPTION": "The Natural Resources Library is a small, cozy library with books on forestry, wildlife, fisheries, zoology, entomology, wildlife management and more.",
+      "DETAILS_HOURS": "https://www.lib.umn.edu/spaces/natural-resources",
+      "ONLINE_TOUR": null,
+      "GOOGLE_MAPS_LINK": "http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=1980+Folwell+Avenue+++++St.+Paul,+MN+55108&sll=44.978263,-93.228135&sspn=0.00768,0.015149&ie=UTF8&ll=44.989433,-93.1861&spn=0.007679,0.015149&z=16&iwloc=A",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/hodson.jpg",
+      "COLLECTIONS": null
+    }
+  },
+  {
+    "name": "Health Sciences Library",
+    "campus": null,
+    "latitude": 44.97218290716256,
+    "longitude": -93.23112654025724,
+    "attributes": {
+      "OBJECTID": 13,
+      "NAME": "Health Sciences Library",
+      "LOCATION": "Phillips-Wangensteen Building | U Card access only",
+      "DESCRIPTION": "Find study spaces and study rooms, Makerspace and Virtual Reality Studio. Staff support collections and books on human health, dentistry, medicine, nursing, physical therapy, pharmacy, public health, and veterinary medicine.",
+      "DETAILS_HOURS": "https://hsl.lib.umn.edu/#spaces",
+      "ONLINE_TOUR": "https://youtu.be/8eN03LDwmaA?si=cu46lWauubB4RJsE",
+      "GOOGLE_MAPS_LINK": "https://goo.gl/maps/RRBQVkcpwDgYp3qc8",
+      "IMAGE_URL": "https://egis.umn.edu/libraries/philips-wangensteen.jpg",
+      "COLLECTIONS": null
+    }
+  }
+]
