@@ -11,10 +11,7 @@ import Social from './components/Social';
 import UserProfile from './components/UserProfile';
 import './App.css';
 import Professors from './components/Professors';
-import StudySpots from './components/study_spot_code/StudySpots';
-import WestBankPage from './components/study_spot_code/WestBankPage';
-import EastBankPage from './components/study_spot_code/EastBankPage';
-import StPaulPage from './components/study_spot_code/StPaulPage';
+import ProfessorDetail from './components/ProfessorDetail';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -53,7 +50,7 @@ function App() {
         } else {
           const existingToken = localStorage.getItem('authToken');
           const existingUserData = localStorage.getItem('userData');
-          
+
           if (existingToken && existingUserData) {
             try {
               const parsedUser = JSON.parse(existingUserData);
@@ -114,8 +111,8 @@ function App() {
   return (
     <Router>
       <div className={`App ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-        <Header 
-          darkMode={darkMode} 
+        <Header
+          darkMode={darkMode}
           setDarkMode={setDarkMode}
           user={user}
           onAuthSuccess={handleAuthSuccess}
@@ -125,6 +122,7 @@ function App() {
           <Route path="/" element={<HomePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/professors" element={<Professors />} />
+          <Route path="/professor/:professorId" element={<ProfessorDetail />} />
           <Route path="/grades" element={<GradeSearch />} />
           <Route path="/course/:courseId" element={<CourseDetail />} />
           <Route path="/studyspots" element={<StudySpots />} />
