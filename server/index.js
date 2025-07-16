@@ -5,9 +5,7 @@ import path from 'path';
 import session from 'express-session';
 import passport from './config/passport.js';
 import gradesRouter from './routes/grades.js';
-import authRouter from './routes/auth.js';
-import socialRouter from './routes/social.js';
-import { initializeDatabase } from './config/database.js';
+import professorsRouter from './routes/professors.js';
 
 const app = express();
 const PORT = 3001;
@@ -38,7 +36,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 24 * 60 * 60 * 1000 
+    maxAge: 24 * 60 * 60 * 1000
   }
 }));
 
@@ -65,6 +63,8 @@ initializeDatabase();
 app.use('/api/grades', gradesRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/social', socialRouter);
+
+app.use('/api/professors', professorsRouter);
 
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Server connected successfully!' });

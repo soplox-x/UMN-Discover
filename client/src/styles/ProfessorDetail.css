@@ -1,0 +1,353 @@
+.professor-detail-page {
+    min-height: 100vh;
+    padding: 2rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode .professor-detail-page {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+    color: var(--dark-text);
+}
+
+.light-mode .professor-detail-page {
+    background: linear-gradient(135deg, var(--light-bg) 0%, var(--light-surface) 100%);
+    color: var(--light-text);
+}
+
+.professor-detail-loading,
+.professor-detail-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    gap: 1rem;
+}
+
+.professor-detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.dark-mode .back-button {
+    background-color: var(--dark-surface);
+    color: var(--dark-text);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .back-button {
+    background-color: var(--light-surface);
+    color: var(--light-text);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    background-color: var(--primary-medium);
+    color: white;
+}
+
+.professor-title-section {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.professor-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--primary-medium);
+}
+
+.professor-description {
+    font-size: 1.25rem;
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.professor-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.professor-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .stat-card {
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .stat-card {
+    background: var(--light-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.dark-mode .stat-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.light-mode .stat-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    background-color: var(--primary-medium);
+}
+
+.stat-content h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    color: var(--primary-medium);
+}
+
+.stat-content p {
+    margin: 0;
+    opacity: 0.7;
+    font-size: 0.95rem;
+}
+
+.grade-distribution-section {
+    margin-bottom: 4rem;
+}
+
+.grade-distribution-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.grade-distribution-section>p {
+    text-align: center;
+    opacity: 0.7;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.grade-chart-container {
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode .grade-chart-container {
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .grade-chart-container {
+    background: var(--light-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.grade-chart {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 1rem;
+    height: 400px;
+    padding: 2rem 0;
+}
+
+.grade-bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.grade-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    width: 60px;
+}
+
+.grade-bar {
+    width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.grade-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-align: center;
+}
+
+.grade-letter {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.grade-percentage {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-medium);
+}
+
+.grade-count {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.grade-description {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    font-style: italic;
+}
+
+.additional-info {
+    margin-bottom: 2rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.info-card {
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .info-card {
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .info-card {
+    background: var(--light-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.info-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary-medium);
+}
+
+.terms-list,
+.course-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.term-tag,
+.course-name {
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.dark-mode .term-tag,
+.dark-mode .course-name {
+    background-color: var(--dark-surface-2);
+    color: var(--dark-text);
+}
+
+.light-mode .term-tag,
+.light-mode .course-name {
+    background-color: var(--light-surface-2);
+    color: var(--light-text);
+}
+
+.course-more {
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .professor-title {
+        font-size: 2.5rem;
+    }
+
+    .professor-description {
+        font-size: 1rem;
+    }
+
+    .professor-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grade-chart {
+        gap: 0.5rem;
+        height: 300px;
+    }
+
+    .grade-bar-wrapper {
+        width: 40px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .professor-detail,
+    .professor-content {
+        padding: 0 1rem;
+    }
+}
