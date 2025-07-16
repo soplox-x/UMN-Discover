@@ -4,6 +4,15 @@ This guide will walk you through setting up Google OAuth authentication for the 
 
 ## Quick Setup Steps
 
+## If you **do NOT** want to enable accounts
+You can run the project without Google OAuth or the database.  
+
+Just add this line to your `server/.env` file:
+
+```env
+ACCOUNT=false
+```
+
 ### 1. Create Google Cloud Project
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
@@ -17,7 +26,7 @@ This guide will walk you through setting up Google OAuth authentication for the 
 2. Search for "Google+ API" 
 3. Click on it and press "Enable"
 
-### 3. Configure OAuth Consent Screen
+### 3. Configure OAuth Consent Screen (You can skip this third part for dev server)
 
 1. Go to "APIs & Services" > "OAuth consent screen"
 2. Choose "External" user type (unless you have Google Workspace)
@@ -42,8 +51,10 @@ This guide will walk you through setting up Google OAuth authentication for the 
    - **Authorized JavaScript origins**: 
      - `http://localhost:3000` (development)
      - `http://localhost:3001` (development)
+     - `http://your-dmian-name` (productionB)
    - **Authorized redirect URIs**:
-     - `http://localhost:3001/api/auth/google/callback`
+     - `http://localhost:3001/api/auth/google/callback` (development)
+     - `https://your-domain-name/api/auth/google/callback` (production)
 5. Click "Create"
 6. **Save your Client ID and Client Secret!**
 
