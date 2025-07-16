@@ -4,6 +4,15 @@ This guide will walk you through setting up Google OAuth authentication for the 
 
 ## Quick Setup Steps
 
+## If you **do NOT** want to enable accounts
+You can run the project without Google OAuth or the database.  
+
+Just add this line to your `server/.env` file:
+
+```env
+ACCOUNT=false
+```
+
 ### 1. Create Google Cloud Project
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
@@ -17,7 +26,7 @@ This guide will walk you through setting up Google OAuth authentication for the 
 2. Search for "Google+ API" 
 3. Click on it and press "Enable"
 
-### 3. Configure OAuth Consent Screen
+### 3. Configure OAuth Consent Screen (You can skip this third part for dev server)
 
 1. Go to "APIs & Services" > "OAuth consent screen"
 2. Choose "External" user type (unless you have Google Workspace)

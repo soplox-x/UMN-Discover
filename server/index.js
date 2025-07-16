@@ -11,15 +11,19 @@ import { initializeDatabase } from './config/database.js';
 
 const app = express();
 const PORT = 3001;
-const requiredEnvVars = ['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET'];
-const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+const useMockAccount = process.env.ACCOUNT === 'false';
 
-if (missingEnvVars.length > 0) {
-  console.error('Missing required environment variables:');
-  missingEnvVars.forEach(varName => {
-    console.error(`   - ${varName}`);
-  });
-  process.exit(1);
+if (!useMockAccount) {
+  const requiredEnvVars = ['GOOGLE_CLIENT_ID', 'GOOGLE_CLIENT_SECRET'];
+  const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+
+  if (missingEnvVars.length > 0) {
+    console.error('Missing required environment variables:');
+    missingEnvVars.forEach(varName => {
+      console.error(`   - ${varName}`);
+    });
+    process.exit(1);
+  }
 }
 
 app.use(cors({
@@ -38,8 +42,22 @@ app.use(session({
   }
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
+if (useMockAccount) {
+  console.log('Mock account enabled!');
+  app.use((req, res, next) => {
+    req.user = {
+      id: 'mock-user',
+      email: 'mock@example.com',
+      username: 'mockuser',
+      display_name: 'Mock Developer',
+      avatar_url: null
+    };
+    next();
+  });
+} else {
+  app.use(passport.initialize());
+  app.use(passport.session());
+}
 app.use('/images', express.static(path.join(process.cwd(), 'images')));
 
 initializeDatabase();
