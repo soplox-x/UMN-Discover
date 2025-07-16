@@ -1,0 +1,11 @@
+.card{
+    color: #7a0019;
+    background: linear-gradient(to bottom right, #ffe066, #ffcc33);
+    padding: 10px;
+    font-size: small;
+    border-radius: 20px;
+}
+
+.card:hover{
+    cursor: pointer;
+}

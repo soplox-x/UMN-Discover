@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaMapMarkerAlt, FaCalendarAlt, FaUsers, FaGraduationCap, FaUtensils, 
-         FaStar, FaSearch, FaBook, FaMoon, FaSun, FaGithub, FaDiscord } from 'react-icons/fa';
+         FaStar, FaSearch, FaBook, FaMoon, FaSun, FaGithub, FaDiscord, FaChartBar, FaUserTie, FaCoffee } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import '../styles/HomePage.css';
 
@@ -39,11 +39,58 @@ const HomePage = ({ darkMode, setDarkMode }) => {
     }
   ];
 
+  const navigationItems = [
+    {
+      icon: <FaChartBar />,
+      title: "Grades",
+      description: "Course grade distributions",
+      path: "/grades",
+      color: "blue"
+    },
+    {
+      icon: <FaUsers />,
+      title: "Clubs",
+      description: "Student organizations",
+      path: "/clubs",
+      color: "green"
+    },
+    {
+      icon: <FaMapMarkerAlt />,
+      title: "Map",
+      description: "Campus navigation",
+      path: "/map",
+      color: "orange"
+    },
+    {
+      icon: <FaCalendarAlt />,
+      title: "Calendar",
+      description: "Schedule & events",
+      path: "/calendar",
+      color: "purple"
+    },
+    {
+      icon: <FaUserTie />,
+      title: "Professors",
+      description: "Faculty reviews",
+      path: "/professors",
+      color: "red"
+    },
+    {
+      icon: <FaCoffee />,
+      title: "Study Spots",
+      description: "Best places to study",
+      path: "/studyspots",
+      color: "yellow"
+    }
+  ];
+
   const quickLinks = [
     { icon: <FaUsers />, label: "Clubs", count: "0" },
     { icon: <FaUsers />, label: "Users", count: "0" },
     { icon: <FaMapMarkerAlt />, label: "Study Spots", count: "0" }
   ];
+
+  const duplicatedFeatures = [...features, ...features, ...features];
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -82,6 +129,7 @@ const HomePage = ({ darkMode, setDarkMode }) => {
           </motion.div>
         </div>
       </section>
+
       <section className="quick-stats">
         <div className="stats-container">
           {quickLinks.map((link, index) => (
@@ -100,6 +148,56 @@ const HomePage = ({ darkMode, setDarkMode }) => {
           ))}
         </div>
       </section>
+
+      <section className="navigation-section">
+        <div className="section-header">
+          <motion.h3 
+            className="section-title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Explore UMN
+          </motion.h3>
+          <motion.p 
+            className="section-description"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Quick access to all the tools you need for university life
+          </motion.p>
+        </div>
+        
+        <div className="navigation-grid">
+          {navigationItems.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 * index }}
+            >
+              <Link to={item.path} className={`nav-item ${item.color}`}>
+                <motion.div
+                  className="nav-item-content"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="nav-icon-container">
+                    {item.icon}
+                  </div>
+                  <div className="nav-text">
+                    <h4 className="nav-title">{item.title}</h4>
+                    <p className="nav-description">{item.description}</p>
+                  </div>
+                  <div className="nav-arrow">→</div>
+                </motion.div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       <section className="features-section">
         <div className="section-header">
           <motion.h3 
@@ -120,25 +218,26 @@ const HomePage = ({ darkMode, setDarkMode }) => {
           </motion.p>
         </div>
         
-        <div className="features-grid">
-          {features.map((feature, index) => (
-            <motion.div 
-              key={index} 
-              className={`feature-card ${feature.color}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 * index }}
-              whileHover={{ scale: 1.03 }}
-            >
-              <div className="feature-icon-container">
-                {feature.icon}
-              </div>
-              <h4 className="feature-title">{feature.title}</h4>
-              <p className="feature-description">{feature.description}</p>
-            </motion.div>
-          ))}
+        <div className="features-carousel-container">
+          <div className="features-carousel">
+            <div className="features-track">
+              {duplicatedFeatures.map((feature, index) => (
+                <div 
+                  key={index} 
+                  className={`feature-card ${feature.color}`}
+                >
+                  <div className="feature-icon-container">
+                    {feature.icon}
+                  </div>
+                  <h4 className="feature-title">{feature.title}</h4>
+                  <p className="feature-description">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+
       <section className="cta-section">
         <div className="cta-content">
           <motion.h3 

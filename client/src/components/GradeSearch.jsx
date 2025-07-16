@@ -33,7 +33,7 @@ const GradeSearch = () => {
     setError(null);
     
     try {
-      let url = `http://localhost:3001/api/grades/search?q=${encodeURIComponent(searchQuery)}`;
+      let url = `/api/grades/search?q=${encodeURIComponent(searchQuery)}`;
       if (selectedInstructor) url += `&instructor=${encodeURIComponent(selectedInstructor)}`;
       
       const response = await fetch(url);
