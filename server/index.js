@@ -7,7 +7,7 @@ import passport from './config/passport.js';
 import gradesRouter from './routes/grades.js';
 import professorsRouter from './routes/professors.js';
 
-const app = express();
+const app = express(); 
 const PORT = 3001;
 const useMockAccount = process.env.ACCOUNT === 'false';
 
