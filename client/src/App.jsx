@@ -12,6 +12,11 @@ import UserProfile from './components/UserProfile';
 import './App.css';
 import Professors from './components/Professors';
 import ProfessorDetail from './components/ProfessorDetail';
+import StudySpots from './components/study_spot_code/StudySpots';
+import EastBankPage from './components/study_spot_code/EastBankPage';
+import StPaulPage from './components/study_spot_code/StPaulPage';
+import WestBankPage from './components/study_spot_code/WestBankPage';
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
