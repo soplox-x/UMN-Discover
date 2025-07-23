@@ -1,15 +1,33 @@
 import pg from 'pg';
 const { Pool } = pg;
 
-const pool = new Pool({
-  user: 'umn-app',
-  host: 'localhost',
-  database: 'umn_discover',
-  password: 'umn1234',
-  port: 5432,
-});
+const useMockAccount = process.env.ACCOUNT === 'false';
+
+let pool;
+
+if (!useMockAccount) {
+  pool = new Pool({
+    user: 'umn-app',
+    host: 'localhost',
+    database: 'umn_discover',
+    password: 'umn1234',
+    port: 5432,
+  });
+} else {
+  console.log('Database disabled due to mock account mode');
+  pool = {
+    query: async (...args) => {
+      console.log('[MOCK DB] Ignored query:', args[0]);
+      return { rows: [] };
+    }
+  };
+}
 
 export const initializeDatabase = async () => {
+  if (useMockAccount) {
+    console.log('Skipping database initialization in mock mode');
+    return;
+  }
   try {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
@@ -180,7 +198,6 @@ export const initializeDatabase = async () => {
 
     await pool.query(`DROP TABLE IF EXISTS group_memberships CASCADE`);
     await pool.query(`DROP TABLE IF EXISTS groups CASCADE`);
-    console.log('Removed group-related tables');
 
     console.log('Database initialized successfully with Google OAuth support');
   } catch (error) {
