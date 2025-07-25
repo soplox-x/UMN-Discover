@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaMapMarkerAlt, FaCalendarAlt, FaUsers, FaGraduationCap, FaUtensils, 
-         FaStar, FaSearch, FaBook, FaMoon, FaSun, FaGithub, FaDiscord, FaChartBar, FaUserTie, FaCoffee } from 'react-icons/fa';
+import {
+  FaMapMarkerAlt, FaCalendarAlt, FaUsers, FaGraduationCap,
+  FaUtensils, FaStar, FaSearch, FaBook, FaMoon, FaSun,
+  FaGithub, FaDiscord, FaChartBar, FaUserTie, FaCoffee
+} from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import AuthModal from './AuthModal';
 import '../styles/HomePage.css';
 
 const HomePage = ({ darkMode, setDarkMode }) => {
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const openAuthModal = () => setShowAuthModal(true);
+  const closeAuthModal = () => setShowAuthModal(false);
+
+  const handleAuthSuccess = (userData, token) => {
+    setShowAuthModal(false);
+  };
+
   const features = [
     {
       icon: <FaSearch className="feature-icon" />,
@@ -254,7 +267,7 @@ const HomePage = ({ darkMode, setDarkMode }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Crate your profile today and start exploring.
+            Create your profile today and start exploring.
           </motion.p>
           <motion.div 
             className="cta-buttons"
@@ -262,17 +275,22 @@ const HomePage = ({ darkMode, setDarkMode }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Link to="/create-profile" className="primary-button">
+            <button className="primary-button" onClick={openAuthModal}>
               <FaUsers className="button-icon" />
               <span>Create Profile</span>
-            </Link>
-            <Link to="/explore" className="secondary-button">
+            </button>
+            <Link to="/map" className="secondary-button">
               <FaMapMarkerAlt className="button-icon" />
               <span>Explore Campus</span>
             </Link>
           </motion.div>
         </div>
       </section>
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={closeAuthModal}
+        onAuthSuccess={handleAuthSuccess}
+      />
     </div>
   );
 };
