@@ -137,8 +137,7 @@ const HomePage = ({ darkMode, setDarkMode }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             style={{ zIndex: 2, position: 'relative' }}
           >
-            <Link to="/signup" className="primary-button">Get Started</Link>
-            <Link to="/learn-more" className="secondary-button">Learn More</Link>
+            <Link to="/about" className="secondary-button">Learn More</Link>
           </motion.div>
         </div>
       </section>
