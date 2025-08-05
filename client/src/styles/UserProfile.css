@@ -24,7 +24,6 @@
   gap: 2rem;
 }
 
-/* Left Sidebar */
 .profile-sidebar {
   width: 350px;
   flex-shrink: 0;
@@ -36,7 +35,6 @@
   gap: 2rem;
 }
 
-/* Profile Card */
 .profile-card {
   border-radius: 1rem;
   overflow: hidden;
@@ -53,7 +51,6 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Banner */
 .profile-banner {
   height: 8rem;
   background-size: cover;
@@ -62,7 +59,6 @@
   position: relative;
 }
 
-/* Profile Info */
 .profile-info {
   padding: 1rem;
 }
@@ -137,7 +133,6 @@
   border-color: #ef4444;
 }
 
-/* Profile Details */
 .profile-details {
   display: flex;
   flex-direction: column;
@@ -206,7 +201,6 @@
   font-size: 0.875rem;
 }
 
-/* Connections Section */
 .connections-section {
   padding: 1rem;
   border-top: 1px solid;
@@ -280,7 +274,6 @@
   font-weight: 600;
 }
 
-/* Suggestions Card */
 .suggestions-card {
   border-radius: 1rem;
   padding: 1rem;
@@ -397,16 +390,14 @@
   background-color: var(--dark-bg);
 }
 
-/* Main Content */
 .profile-main {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 100px);
 }
 
-/* Tabs */
 .profile-tabs {
   border-bottom: 1px solid;
   margin-bottom: 0;
@@ -458,7 +449,6 @@
   border-radius: 1px;
 }
 
-/* Profile Content */
 .profile-content {
   display: flex;
   flex-direction: column;
@@ -545,7 +535,7 @@
 }
 
 .post-image img {
-  width: 100%;
+  width: 50%;
   max-height: 25rem;
   object-fit: cover;
 }
@@ -579,7 +569,6 @@
   height: 1.25rem;
 }
 
-/* Users List */
 .users-list {
   display: flex;
   flex-direction: column;
@@ -652,7 +641,6 @@
   white-space: nowrap;
 }
 
-/* Empty States */
 .empty-state {
   text-align: center;
   padding: 3rem 2rem;
@@ -670,7 +658,6 @@
   opacity: 0.8;
 }
 
-/* Loading and Error States */
 .user-profile-loading,
 .user-profile-error {
   display: flex;
@@ -728,7 +715,6 @@
   color: white;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .user-profile-container {
     padding: 0.5rem;

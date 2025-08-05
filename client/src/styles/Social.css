@@ -102,7 +102,6 @@
   border-radius: 2px 2px 0 0;
 }
 
-/* Search Section */
 .search-section {
   padding: 1.5rem;
   border-bottom: 1px solid;
@@ -248,7 +247,6 @@
   opacity: 0.6;
 }
 
-/* Compose Tweet */
 .compose-tweet {
   border-bottom: 1px solid;
   padding: 1rem 1.5rem;
@@ -380,7 +378,6 @@
   cursor: not-allowed;
 }
 
-/* Timeline */
 .timeline {
   display: flex;
   flex-direction: column;
@@ -450,10 +447,9 @@
 }
 
 .tweet-image {
-  margin-top: 0.75rem;
-  border-radius: 1rem;
+  display: inline-block;
+  border-radius: 0.5rem;
   overflow: hidden;
-  border: 1px solid;
 }
 
 .dark-mode .tweet-image {
@@ -465,9 +461,12 @@
 }
 
 .tweet-image img {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
+  width: auto;
+  height: auto;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
 }
 
 .tweet-actions {
@@ -512,7 +511,6 @@
   color: rgb(29, 155, 240);
 }
 
-/* Tweet Replies */
 .tweet-replies {
   margin-top: 0.75rem;
   border-top: 1px solid;
@@ -633,7 +631,6 @@
   line-height: 1.4;
 }
 
-/* Empty States */
 .empty-timeline,
 .no-results,
 .search-suggestions {
@@ -657,7 +654,6 @@
   opacity: 0.8;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .social-container {
     max-width: 100%;
