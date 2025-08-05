@@ -392,7 +392,11 @@ const Social = ({ user }) => {
             <form onSubmit={handleCreatePost} className="compose-form">
               <div className="compose-header">
                 <div className="user-avatar" onClick={() => navigateToProfile(user.username)}>
-                  <FaUser />
+                  {user?.avatar_url ? (
+                    <img src={user.avatar_url} alt={user.username} />
+                  ) : (
+                    <FaUser />
+                  )}
                 </div>
                 <textarea
                   value={newPost}
@@ -453,7 +457,11 @@ const Social = ({ user }) => {
                   <div className="tweet-content">
                     <div className="tweet-header">
                       <div className="user-avatar" onClick={() => navigateToProfile(post.username)}>
-                        <FaUser />
+                        {post.avatar_url ? (
+                          <img src={post.avatar_url} alt={post.username} />
+                        ) : (
+                          <FaUser />
+                        )}
                       </div>
                       <div className="tweet-meta">
                         <span 
@@ -509,7 +517,11 @@ const Social = ({ user }) => {
                           {user && (
                             <div className="reply-compose">
                               <div className="user-avatar small">
-                                <FaUser />
+                                {user?.avatar_url ? (
+                                  <img src={user.avatar_url} alt={user.username} />
+                                ) : (
+                                  <FaUser />
+                                )}
                               </div>
                               <div className="reply-input-container">
                                 <input
@@ -542,7 +554,11 @@ const Social = ({ user }) => {
                             {comments[post.id]?.map((comment) => (
                               <div key={comment.id} className="reply">
                                 <div className="user-avatar small" onClick={() => navigateToProfile(comment.username)}>
-                                  <FaUser />
+                                  {comment.avatar_url ? (
+                                    <img src={comment.avatar_url} alt={comment.username} />
+                                  ) : (
+                                    <FaUser />
+                                  )}
                                 </div>
                                 <div className="reply-content">
                                   <div className="reply-header">

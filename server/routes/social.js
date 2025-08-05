@@ -134,6 +134,16 @@ router.get('/users/:identifier', authenticateTokenOptional, async (req, res) => 
         u.email,
         u.bio,
         u.avatar_url,
+        u.banner_url,
+        u.display_name,
+        u.youtube_url,
+        u.spotify_url,
+        u.facebook_url,
+        u.discord_username,
+        u.twitter_url,
+        u.instagram_url,
+        u.linkedin_url,
+        u.github_url,
         u.created_at,
         COUNT(DISTINCT f1.id) as followers_count,
         COUNT(DISTINCT f2.id) as following_count,
@@ -143,7 +153,7 @@ router.get('/users/:identifier', authenticateTokenOptional, async (req, res) => 
       LEFT JOIN user_follows f2 ON u.id = f2.follower_id
       LEFT JOIN posts p ON u.id = p.user_id
       WHERE LOWER(u.username) = LOWER($1)
-      GROUP BY u.id, u.username, u.email, u.bio, u.avatar_url, u.created_at
+      GROUP BY u.id, u.username, u.email, u.bio, u.avatar_url, u.banner_url, u.display_name, u.youtube_url, u.spotify_url, u.facebook_url, u.discord_username, u.twitter_url, u.instagram_url, u.linkedin_url, u.github_url, u.created_at
     `, [identifier]);
 
     if (result.rows.length === 0 && !isNaN(identifier)) {
@@ -155,6 +165,16 @@ router.get('/users/:identifier', authenticateTokenOptional, async (req, res) => 
           u.email,
           u.bio,
           u.avatar_url,
+          u.banner_url,
+          u.display_name,
+          u.youtube_url,
+          u.spotify_url,
+          u.facebook_url,
+          u.discord_username,
+          u.twitter_url,
+          u.instagram_url,
+          u.linkedin_url,
+          u.github_url,
           u.created_at,
           COUNT(DISTINCT f1.id) as followers_count,
           COUNT(DISTINCT f2.id) as following_count,
@@ -164,7 +184,7 @@ router.get('/users/:identifier', authenticateTokenOptional, async (req, res) => 
         LEFT JOIN user_follows f2 ON u.id = f2.follower_id
         LEFT JOIN posts p ON u.id = p.user_id
         WHERE u.id = $1
-        GROUP BY u.id, u.username, u.email, u.bio, u.avatar_url, u.created_at
+        GROUP BY u.id, u.username, u.email, u.bio, u.avatar_url, u.banner_url, u.display_name, u.youtube_url, u.spotify_url, u.facebook_url, u.discord_username, u.twitter_url, u.instagram_url, u.linkedin_url, u.github_url, u.created_at
       `, [parseInt(identifier)]);
     }
 
@@ -239,6 +259,7 @@ router.get('/users/:identifier/posts', async (req, res) => {
         p.created_at,
         u.username,
         u.id as user_id,
+        u.avatar_url,
         COUNT(DISTINCT pl.id) as likes_count,
         COUNT(DISTINCT c.id) as comments_count
       FROM posts p
@@ -246,7 +267,7 @@ router.get('/users/:identifier/posts', async (req, res) => {
       LEFT JOIN post_likes pl ON p.id = pl.post_id
       LEFT JOIN comments c ON p.id = c.post_id
       WHERE p.user_id = $1
-      GROUP BY p.id, u.username, u.id
+      GROUP BY p.id, u.username, u.id, u.avatar_url
       ORDER BY p.created_at DESC
       LIMIT $2 OFFSET $3
     `, [userId, limit, offset]);
@@ -381,6 +402,7 @@ router.get('/feed', authenticateToken, async (req, res) => {
         p.created_at,
         u.username,
         u.id as user_id,
+        u.avatar_url,
         COUNT(DISTINCT pl.id) as likes_count,
         COUNT(DISTINCT c.id) as comments_count,
         EXISTS(SELECT 1 FROM post_likes WHERE user_id = $1 AND post_id = p.id) as user_liked
@@ -394,7 +416,7 @@ router.get('/feed', authenticateToken, async (req, res) => {
         )
         OR p.user_id = $1
       )
-      GROUP BY p.id, u.username, u.id
+      GROUP BY p.id, u.username, u.id, u.avatar_url
       ORDER BY p.created_at DESC
       LIMIT $2 OFFSET $3
     `, [userId, limit, offset]);
@@ -432,13 +454,14 @@ router.get('/posts', async (req, res) => {
         p.created_at,
         u.username,
         u.id as user_id,
+        u.avatar_url,
         COUNT(DISTINCT pl.id) as likes_count,
         COUNT(DISTINCT c.id) as comments_count
       FROM posts p
       JOIN users u ON p.user_id = u.id
       LEFT JOIN post_likes pl ON p.id = pl.post_id
       LEFT JOIN comments c ON p.id = c.post_id
-      GROUP BY p.id, u.username, u.id
+      GROUP BY p.id, u.username, u.id, u.avatar_url
       ORDER BY p.created_at DESC
       LIMIT $1 OFFSET $2
     `, [limit, offset]);
@@ -462,6 +485,40 @@ router.get('/posts', async (req, res) => {
     });
   }
 });
+router.get('/suggestions/:userId', authenticateToken, async (req, res) => {
+  try {
+    const currentUserId = req.user.userId;
+    const result = await pool.query(`
+      SELECT DISTINCT
+        u.id,
+        u.username,
+        u.display_name,
+        u.bio,
+        u.avatar_url
+      FROM users u
+      JOIN user_follows uf ON u.id = uf.following_id
+      JOIN user_follows mutual ON uf.follower_id = mutual.follower_id
+      JOIN user_follows my_follows ON mutual.following_id = my_follows.following_id
+      WHERE my_follows.follower_id = $1
+        AND u.id != $1
+        AND u.id NOT IN (
+          SELECT following_id FROM user_follows WHERE follower_id = $1
+        )
+      LIMIT 5
+    `, [currentUserId]);
+
+    res.json({
+      success: true,
+      data: result.rows
+    });
+  } catch (error) {
+    console.error('Get suggestions error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch suggestions'
+    });
+  }
+});
 
 router.post('/posts', authenticateToken, upload.single('image'), async (req, res) => {
   try {
@@ -482,9 +539,28 @@ router.post('/posts', authenticateToken, upload.single('image'), async (req, res
       });
     }
 
-    let imageUrl = null;
-    if (req.file) {
-      imageUrl = `/images/${req.file.filename}`;
+   let imageUrl = null;
+   if (req.file) {
+     try {
+       const result = await uploadToCloudinary(req.file.buffer, {
+         folder: 'umn-discover/posts',
+         transformation: {
+           width: 1200,
+           height: 800,
+           crop: 'limit',
+           quality: 'auto:good',
+           fetch_format: 'auto'
+         },
+         public_id_prefix: `${userId}_post`
+       });
+       imageUrl = result.secure_url;
+     } catch (uploadError) {
+       console.error('Post image upload error:', uploadError);
+       return res.status(500).json({
+         success: false,
+         error: 'Failed to upload image'
+       });
+     }
     }
 
     const result = await pool.query(`
@@ -633,7 +709,8 @@ router.get('/posts/:postId/comments', async (req, res) => {
         c.content,
         c.created_at,
         u.username,
-        u.id as user_id
+        u.id as user_id,
+        u.avatar_url
       FROM comments c
       JOIN users u ON c.user_id = u.id
       WHERE c.post_id = $1
