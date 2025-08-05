@@ -2,41 +2,26 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import pool from '../config/database.js';
 import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
+import { uploadToCloudinary, deleteFromCloudinary, extractPublicId } from '../config/cloudinary.js';
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'umn-discover-secret-key';
-
-const imagesDir = path.join(process.cwd(), 'images');
-if (!fs.existsSync(imagesDir)) {
-  fs.mkdirSync(imagesDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, imagesDir);
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, 'post-' + uniqueSuffix + path.extname(file.originalname));
-  }
-});
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB limit
+    fileSize: 10 * 1024 * 1024 // 10MB limit
   },
   fileFilter: (req, file, cb) => {
     const allowedTypes = /jpeg|jpg|png|gif|webp/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const extname = allowedTypes.test(file.originalname.toLowerCase());
     const mimetype = allowedTypes.test(file.mimetype);
 
     if (mimetype && extname) {
       return cb(null, true);
     } else {
-      cb(new Error('Only image files are allowed'));
+      cb(new Error('Only image files are allowed (jpeg, jpg, png, gif, webp)'));
     }
   }
 });
@@ -249,7 +234,6 @@ router.get('/users/:identifier/posts', async (req, res) => {
     }
     
     const userId = userResult.rows[0].id;
-    console.log('Found user ID:', userId);
     
     const result = await pool.query(`
       SELECT 
@@ -542,25 +526,25 @@ router.post('/posts', authenticateToken, upload.single('image'), async (req, res
    let imageUrl = null;
    if (req.file) {
      try {
-       const result = await uploadToCloudinary(req.file.buffer, {
-         folder: 'umn-discover/posts',
-         transformation: {
-           width: 1200,
-           height: 800,
-           crop: 'limit',
-           quality: 'auto:good',
-           fetch_format: 'auto'
-         },
-         public_id_prefix: `${userId}_post`
-       });
-       imageUrl = result.secure_url;
-     } catch (uploadError) {
-       console.error('Post image upload error:', uploadError);
-       return res.status(500).json({
-         success: false,
-         error: 'Failed to upload image'
-       });
-     }
+        const result = await uploadToCloudinary(req.file.buffer, {
+          folder: 'umn-discover/posts',
+          transformation: {
+            width: 1200,
+            height: 800,
+            crop: 'limit',
+            quality: 'auto:good',
+            fetch_format: 'auto'
+          },
+          public_id_prefix: `${userId}_post`
+        });
+        imageUrl = result.secure_url;
+      } catch (uploadError) {
+        console.error('Post image upload error:', uploadError);
+        return res.status(500).json({
+          success: false,
+          error: 'Failed to upload image'
+        });
+      }
     }
 
     const result = await pool.query(`
