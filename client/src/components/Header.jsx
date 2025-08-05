@@ -20,6 +20,25 @@ const Header = ({ darkMode, setDarkMode, user, onAuthSuccess, onLogout }) => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+  useEffect(() => {
+    if (user) {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        fetch('/api/auth/profile', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success && JSON.stringify(data.data) !== JSON.stringify(user)) {
+            onAuthSuccess(data.data, token);
+          }
+        })
+        .catch(console.error);
+      }
+    }
+  }, []);
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 

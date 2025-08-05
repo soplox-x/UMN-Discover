@@ -82,6 +82,21 @@ function App() {
     setUser(userData);
     localStorage.setItem('authToken', token);
     localStorage.setItem('userData', JSON.stringify(userData));
+    setTimeout(() => {
+      fetch('/api/auth/profile', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          setUser(data.data);
+          localStorage.setItem('userData', JSON.stringify(data.data));
+        }
+      })
+      .catch(console.error);
+    }, 100);
   };
 
   const handleLogout = () => {
