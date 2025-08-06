@@ -2,6 +2,18 @@
 
 This roadmap outlines major development milestones for the Platform. Tasks are grouped by feature area and assigned team. Each item will be updated as progress is made.
 
+## CoreFeatures
+- [ ] Map
+- [ ] Clubs
+- [ ] Calendar
+- [x] Grades
+- [x] Social
+- [x] Professors Look Up
+- [ ] Professors Rating System
+- [ ] Study Spots
+- [x] Account
+
+
 ## Phase 0: Project Setup
 
 - [x] Define project scope and feature list
