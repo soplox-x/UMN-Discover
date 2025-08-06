@@ -24,9 +24,9 @@ importers:
       framer-motion:
         specifier: ^12.18.1
         version: 12.18.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      moment:
-        specifier: ^2.30.1
-        version: 2.30.1
+      luxon:
+        specifier: ^3.7.1
+        version: 3.7.1
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1132,8 +1132,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  luxon@3.6.1:
-    resolution: {integrity: sha512-tJLxrKJhO2ukZ5z0gyjY1zPh3Rh88Ej9P7jNrZiHMUXHae1yvI2imgOZtL1TO8TW6biMMKfTtAOoEJANgtWBMQ==}
+  luxon@3.7.1:
+    resolution: {integrity: sha512-RkRWjA926cTvz5rAb1BqyWkKbbjzCGchDUIKMCUvNi17j6f6j8uHGDV82Aqcqtzd+icoYpELmG3ksgGiFNNcNg==}
     engines: {node: '>=12'}
 
   math-intrinsics@1.1.0:
@@ -2697,7 +2697,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  luxon@3.6.1: {}
+  luxon@3.7.1: {}
 
   math-intrinsics@1.1.0: {}
 
@@ -2930,7 +2930,7 @@ snapshots:
       invariant: 2.2.4
       lodash: 4.17.21
       lodash-es: 4.17.21
-      luxon: 3.6.1
+      luxon: 3.7.1
       memoize-one: 6.0.0
       moment: 2.30.1
       moment-timezone: 0.5.48
