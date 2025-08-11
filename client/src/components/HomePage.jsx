@@ -252,37 +252,66 @@ const HomePage = ({ darkMode, setDarkMode }) => {
 
       <section className="cta-section">
         <div className="cta-content">
-          <motion.h3 
+          <motion.h3
             className="cta-title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Ready to Discover UMN?
+            Project Contributors
           </motion.h3>
-          <motion.p 
+          <motion.p
             className="cta-description"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Create your profile today and start exploring.
+            This are people who have contributed to the project either through code, design, or other means.
           </motion.p>
-          <motion.div 
-            className="cta-buttons"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <button className="primary-button" onClick={openAuthModal}>
-              <FaUsers className="button-icon" />
-              <span>Create Profile</span>
-            </button>
-            <Link to="/map" className="secondary-button">
-              <FaMapMarkerAlt className="button-icon" />
-              <span>Explore Campus</span>
-            </Link>
-          </motion.div>
+          <div className="contributors-grid">
+            {[ 
+              { name: "BlueYellow-Green", githubUser: "BlueYellow-Green", discord: "https://discordapp.com/users/733848884228521994" },
+              { name: "CleverDeer", githubUser: "CleverDeer", discord: "https://discordapp.com/users/446021396254949376" },
+              { name: "madebyethan", githubUser: "madebyethan", discord: "https://discordapp.com/users/1295776866707177534" },
+              { name: "MetaZoan1", githubUser: "MetaZoan1", discord: "https://discordapp.com/users/388807710176444426" },
+              { name: "NAMERIO", githubUser: "NAMERIO", discord: "https://discordapp.com/users/605043565856423955" },
+              { name: "tomhomestar", githubUser: "tomhomestar", discord: "https://discordapp.com/users/1317956337270915113" },
+            ].map((contributor, index) => (
+              <motion.div
+                key={index}
+                className="contributor-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
+              >
+                <img
+                  src={`https://github.com/${contributor.githubUser}.png`}
+                  alt={contributor.name}
+                  className="contributor-pfp"
+                />
+                <h4 className="contributor-name">{contributor.name}</h4>
+                <div className="contributor-links">
+                  <a
+                    href={`https://github.com/${contributor.githubUser}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${contributor.name} GitHub`}
+                  >
+                    <FaGithub />
+                  </a>
+                  <a
+                    href={contributor.discord}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${contributor.name} Discord`}
+                    style={{ marginLeft: '8px' }}
+                  >
+                    <FaDiscord />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
       <AuthModal
