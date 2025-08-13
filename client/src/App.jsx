@@ -17,7 +17,9 @@ import EastBankPage from './components/study_spot_code/EastBankPage';
 import StPaulPage from './components/study_spot_code/StPaulPage';
 import WestBankPage from './components/study_spot_code/WestBankPage';
 import Privacy from './components/Privacy';
+import About from './components/About';
 import './styles/Privacy.css';
+import './styles/About.css';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -164,6 +166,7 @@ function App() {
           <Route path="/studyspots/eastbank" element={<EastBankPage />} />
           <Route path="/studyspots/stpaul" element={<StPaulPage />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/about" element={<About />} />
           <Route path="*" element={<HomePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
         </Routes>
         <Footer />

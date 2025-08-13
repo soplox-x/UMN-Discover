@@ -36,7 +36,7 @@ const Footer = () => {
             <h5 className="footer-links-title">Quick Links</h5>
             <ul>
               <li><Link to="/about">About</Link></li>
-              <li><Link to="/clubs">clubs</Link></li>
+              <li><Link to="/clubs">Clubs</Link></li>
               <li><Link to="/map">Map</Link></li>
               <li><Link to="/support">Support</Link></li>
               <li><Link to="/privacy">Privacy</Link></li>
