@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\"",
-    "build": "pnpm --filter client build && pnpm --filter server build"
+    "build": "pnpm --filter client build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
