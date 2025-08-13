@@ -1,0 +1,238 @@
+.privacy-page {
+  min-height: 100vh;
+  padding: 2rem 0;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .privacy-page {
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-surface) 100%);
+  color: var(--dark-text);
+}
+
+.light-mode .privacy-page {
+  background: linear-gradient(135deg, var(--light-bg) 0%, var(--light-surface) 100%);
+  color: var(--light-text);
+}
+
+.privacy-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.privacy-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.privacy-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+  margin: 0 auto 1.5rem;
+}
+
+.privacy-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--primary-medium);
+}
+
+.last-updated {
+  font-size: 1rem;
+  opacity: 0.7;
+  margin: 0;
+}
+
+.privacy-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.privacy-section {
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.dark-mode .privacy-section {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .privacy-section {
+  background: var(--light-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.section-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
+  margin-bottom: 1.5rem;
+}
+
+.privacy-section h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--primary-medium);
+}
+
+.privacy-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem 0;
+  transition: color 0.3s ease;
+}
+
+.dark-mode .privacy-section h3 {
+  color: var(--dark-text);
+}
+
+.light-mode .privacy-section h3 {
+  color: var(--light-text);
+}
+
+.section-content {
+  line-height: 1.7;
+}
+
+.section-content p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.section-content ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.section-content li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.email-domains {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.dark-mode .email-domains {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .email-domains {
+  background: var(--light-surface);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.email-domains li {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.dark-mode .email-domains li {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--secondary-dark);
+}
+
+.light-mode .email-domains li {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--primary-medium);
+}
+
+.disclaimer {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border-left: 4px solid var(--primary-medium);
+  font-weight: 500;
+}
+
+.dark-mode .disclaimer {
+  background: rgba(165, 0, 52, 0.1);
+  border-color: var(--primary-medium);
+}
+
+.light-mode .disclaimer {
+  background: rgba(165, 0, 52, 0.05);
+  border-color: var(--primary-medium);
+}
+
+.section-content a {
+  color: var(--primary-medium);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.section-content a:hover {
+  color: var(--primary-light);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .privacy-container {
+    padding: 0 1rem;
+  }
+  
+  .privacy-header h1 {
+    font-size: 2rem;
+  }
+  
+  .privacy-section {
+    padding: 1.5rem;
+  }
+  
+  .email-domains {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    padding: 1rem;
+  }
+  
+  .email-domains li {
+    font-size: 0.8rem;
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .privacy-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .email-domains {
+    grid-template-columns: 1fr 1fr;
+  }
+}
