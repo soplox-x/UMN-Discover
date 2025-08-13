@@ -38,12 +38,13 @@ const About = () => {
   ];
 
   const contributors = [
-    { name: "BlueYellow-Green", role: "Developer", githubUser: "BlueYellow-Green", discord: "https://discordapp.com/users/733848884228521994" },
-    { name: "CleverDeer", role: "UI/UX Designer", githubUser: "CleverDeer", discord: "https://discordapp.com/users/446021396254949376" },
-    { name: "madebyethan", role: "Backend Developer", githubUser: "madebyethan", discord: "https://discordapp.com/users/1295776866707177534" },
-    { name: "MetaZoan1", role: "Full Stack Developer", githubUser: "MetaZoan1", discord: "https://discordapp.com/users/388807710176444426" },
-    { name: "NAMERIO", role: "Frontend Developer", githubUser: "NAMERIO", discord: "https://discordapp.com/users/605043565856423955" },
-    { name: "tomhomestar", role: "Developer", githubUser: "tomhomestar", discord: "https://discordapp.com/users/1317956337270915113" }
+    // role can be add later ig (e.g. "Frontend Developer", "Backend Developer")
+    { name: "BlueYellow-Green", role: "", githubUser: "BlueYellow-Green", discord: "https://discordapp.com/users/733848884228521994" },
+    { name: "CleverDeer", role: "", githubUser: "CleverDeer", discord: "https://discordapp.com/users/446021396254949376" },
+    { name: "madebyethan", role: "", githubUser: "madebyethan", discord: "https://discordapp.com/users/1295776866707177534" },
+    { name: "MetaZoan1", role: "", githubUser: "MetaZoan1", discord: "https://discordapp.com/users/388807710176444426" },
+    { name: "NAMERIO", role: "", githubUser: "NAMERIO", discord: "https://discordapp.com/users/605043565856423955" },
+    { name: "tomhomestar", role: "", githubUser: "tomhomestar", discord: "https://discordapp.com/users/1317956337270915113" }
   ];
 
   const techStack = [
