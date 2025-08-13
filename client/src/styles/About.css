@@ -392,6 +392,7 @@
   text-decoration: none;
   transition: all 0.3s ease;
   font-size: 1rem;
+  margin-top: 20px;
 }
 
 .primary-button {
@@ -406,8 +407,8 @@
 
 .secondary-button {
   background-color: rgba(122, 0, 25, 0.1);
-  color: var(--primary-dark);
-  border: 2px solid var(--primary-dark);
+  color: rgb(255, 255, 0);
+  border: 2px solid yellow;
 }
 
 .tech-logo {
@@ -431,7 +432,7 @@
 }
 
 .secondary-button:hover {
-  background-color: var(--primary-dark);
+  background-color: rgba(105, 105, 105, 0.479);
   color: white;
   transform: translateY(-2px);
 }

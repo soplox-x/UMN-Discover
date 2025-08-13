@@ -127,8 +127,13 @@ const HomePage = ({ darkMode, setDarkMode }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            The UDiscover App brings together essential services and functions in one place, 
-            making it easier to manage academics, campus navigation, and involvement.
+            {/* The UDiscover App brings together essential services and functions in one place, 
+            making it easier to manage academics, campus navigation, and involvement. */}
+            <p className="disclaimer-notice">
+              <strong>Important:</strong> This platform is independent from and not affiliated with 
+              or endorsed by the Regents of the University of Minnesota. The university is not 
+              responsible for the content, functionality, or data practices of this student created platform.
+            </p>
           </motion.p>
           <motion.div 
             className="hero-buttons"
