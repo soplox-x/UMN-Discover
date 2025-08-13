@@ -98,7 +98,7 @@ const Header = ({ darkMode, setDarkMode, user, onAuthSuccess, onLogout }) => {
               <img src="/gopher_icon.svg" alt="UMN Gopher Logo" className="logo-icon" />
             </motion.div>
             <div>
-              <h1 className="app-name">UMN Discover</h1>
+              <h1 className="app-name">UDiscover</h1>
               <p className="tagline">University of Minnesota</p>
             </div>
           </Link>

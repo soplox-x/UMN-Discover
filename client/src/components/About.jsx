@@ -92,7 +92,7 @@ const About = () => {
           <div className="about-icon">
             <FaGraduationCap />
           </div>
-          <h1>About UMN Discover</h1>
+          <h1>About UDiscover</h1>
           <p className="about-subtitle">
             A comprehensive platform designed by students, for students at the University of Minnesota
           </p>
@@ -109,14 +109,14 @@ const About = () => {
           <h2>Our Mission</h2>
           <div className="section-content">
             <p>
-            UMN Discover was built to make life at the University of Minnesota a little easier. We noticed that
+            UDiscover was built to make life at the University of Minnesota a little easier. We noticed that
             important info and helpful tools were scattered all over the place, which made simple things more
             frustrating than they needed to be.
             </p>
             <p>
             Our goal is to put everything students need in one simple, easy to use spot. Whether it’s finding a
             great study space, figuring out the campus tunnels, checking grade trends, or connecting with other
-            students, UMN Discover brings it all together in one place.
+            students, UDiscover brings it all together in one place.
             </p>
           </div>
         </motion.section>
@@ -247,7 +247,7 @@ const About = () => {
           <h2>Student Organization</h2>
           <div className="disclaimer-content">
             <p>
-              <strong>UMN Discover</strong> is developed and maintained by the <strong>CSCI Social Club</strong>, 
+              <strong>UDiscover</strong> is developed and maintained by the <strong>CSCI Social Club</strong>, 
               a registered student organization at the University of Minnesota. This platform is created 
               by students, for students, to enhance the university experience.
             </p>
