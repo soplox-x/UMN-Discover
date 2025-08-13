@@ -50,7 +50,7 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="auth-modal-header">
-              <h2>Sign in to UMN Discover</h2>
+              <h2>Sign in to UDiscover</h2>
               <button className="close-button" onClick={handleClose}>
                 <FaTimes />
               </button>

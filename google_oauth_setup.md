@@ -1,6 +1,6 @@
-# Google OAuth Setup Guide for UMN Discover
+# Google OAuth Setup Guide for UDiscover
 
-This guide will walk you through setting up Google OAuth authentication for the UMN Discover application.
+This guide will walk you through setting up Google OAuth authentication for the UDiscover application.
 
 ## Quick Setup Steps
 
@@ -17,7 +17,7 @@ ACCOUNT=false
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Click "New Project" or select an existing project
-3. Name your project (e.g., "UMN Discover")
+3. Name your project (e.g., "UDiscover")
 4. Note your Project ID
 
 ### 2. Enable Google+ API
@@ -31,7 +31,7 @@ ACCOUNT=false
 1. Go to "APIs & Services" > "OAuth consent screen"
 2. Choose "External" user type (unless you have Google Workspace)
 3. Fill in the required information:
-   - **App name**: UMN Discover
+   - **App name**: UDiscover
    - **User support email**: Your email
    - **Developer contact email**: Your email
    - **App domain**: `http://localhost:3000` (for development)
@@ -47,7 +47,7 @@ ACCOUNT=false
 2. Click "Create Credentials" > "OAuth 2.0 Client IDs"
 3. Choose "Web application"
 4. Configure:
-   - **Name**: UMN Discover Web Client
+   - **Name**: UDiscover Web Client
    - **Authorized JavaScript origins**: 
      - `http://localhost:3000` (development)
      - `http://localhost:3001` (development)

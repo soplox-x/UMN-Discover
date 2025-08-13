@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="footer-logo-img">
               <FaGraduationCap />
             </div>
-            <h4 className="footer-title">UMN Discover</h4>
+            <h4 className="footer-title">UDiscover</h4>
           </div>
           <p className="footer-description">
             Built by students, for students.

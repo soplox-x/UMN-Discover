@@ -1,4 +1,4 @@
-# UMN Discover - Account Setup (PostgreSQL)
+# UDiscover - Account Setup (PostgreSQL)
 
 ## If you **do NOT** want to enable accounts
 You can run the project without Google OAuth or the database.  

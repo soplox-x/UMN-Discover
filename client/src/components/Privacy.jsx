@@ -34,7 +34,7 @@ const Privacy = () => {
             <div className="section-content">
               <h3>University Email Authentication</h3>
               <p>
-                UMN Discover requires authentication using your University of Minnesota email address. 
+                UDiscover requires authentication using your University of Minnesota email address. 
                 We only accept email addresses from the following UMN domains:
               </p>
               <ul className="email-domains">
@@ -107,7 +107,7 @@ const Privacy = () => {
             <div className="section-content">
               <p>We use your information to:</p>
               <ul>
-                <li>Provide and maintain the UMN Discover platform</li>
+                <li>Provide and maintain the UDiscover platform</li>
                 <li>Authenticate your access to the platform</li>
                 <li>Enable social features like following other users</li>
                 <li>Display your profile and posts to other UMN students</li>
@@ -134,7 +134,7 @@ const Privacy = () => {
             <h2>UMN Email Requirement</h2>
             <div className="section-content">
               <p>
-                UMN Discover is exclusively for University of Minnesota students. 
+                UDiscover is exclusively for University of Minnesota students. 
                 We verify your affiliation through your UMN email address. This ensures:
               </p>
               <ul>
@@ -189,7 +189,7 @@ const Privacy = () => {
             <h2>Student Organization Notice</h2>
             <div className="section-content">
               <p className="disclaimer">
-                <strong>Important:</strong> UMN Discover is developed and maintained by the 
+                <strong>Important:</strong> UDiscover is developed and maintained by the 
                 CSCI Social Club, a registered student organization. This platform is independent 
                 from and not affiliated with or endorsed by the Regents of the University of Minnesota. 
                 The university is not responsible for the content, privacy practices, or data 

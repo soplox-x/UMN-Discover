@@ -127,7 +127,7 @@ const HomePage = ({ darkMode, setDarkMode }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            The UMN Discover App brings together essential services and functions in one place, 
+            The UDiscover App brings together essential services and functions in one place, 
             making it easier to manage academics, campus navigation, and involvement.
           </motion.p>
           <motion.div 
