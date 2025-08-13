@@ -64,7 +64,7 @@ const About = () => {
     },
     { 
       name: "Cloudinary", 
-      description: "Cloud-based image storage and optimization",
+      description: "Cloud based image storage and optimization",
       logo: "https://cdn.brandfetch.io/id2vqrnWlC/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1750748982022"
     },
     { 
