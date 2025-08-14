@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import pool from '../config/database.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -121,7 +122,8 @@ class professorDataProcessor {
                     ((professor.gradeDistribution[grade] / professor.totalStudents) * 100).toFixed(1);
             });
 
-            professor.averageGPA = this.calculateGPA(professor.gradeDistribution, professor.totalStudents);
+            professor.csvAverageGPA = this.calculateGPA(professor.gradeDistribution, professor.totalStudents);
+            professor.averageGPA = professor.csvAverageGPA;
         });
 
         return professorMap;
@@ -147,6 +149,52 @@ class professorDataProcessor {
         return countedStudents > 0 ? (totalPoints / countedStudents).toFixed(2) : null;
     }
 
+    async getCombinedRating(professorId) {
+        try {
+            const reviewsResult = await pool.query(`
+                SELECT AVG(rating)::NUMERIC(3,2) as user_rating, COUNT(*) as review_count
+                FROM reviews 
+                WHERE review_type = 'professor' AND target_id = $1
+            `, [professorId]);
+
+            const userRating = reviewsResult.rows[0]?.user_rating;
+            const reviewCount = parseInt(reviewsResult.rows[0]?.review_count) || 0;
+            const professor = this.getProfessor(professorId);
+            const csvGPA = professor?.csvAverageGPA;
+
+            if (!userRating && !csvGPA) return null;
+            if (!userRating) return csvGPA;
+            if (!csvGPA) return parseFloat(userRating).toFixed(2);
+
+            // Combine ratings: weight user reviews more heavily as they accumulate
+            // CSV GPA is on 0-4 scale, user rating is on 1-5 scale
+            const normalizedUserRating = ((parseFloat(userRating) - 1) / 4) * 4; 
+            const csvWeight = Math.max(0.3, 1 / (1 + reviewCount * 0.1));
+            const userWeight = 1 - csvWeight;
+
+            const combinedRating = (parseFloat(csvGPA) * csvWeight) + (normalizedUserRating * userWeight);
+            return combinedRating.toFixed(2);
+        } catch (error) {
+            console.error('Error calculating combined rating:', error);
+            return null;
+        }
+    }
+
+    async enrichWithUserReviews(professors) {
+        try {
+            for (const professor of professors) {
+                const combinedRating = await this.getCombinedRating(professor.professorId);
+                if (combinedRating) {
+                    professor.averageGPA = combinedRating;
+                }
+            }
+            return professors;
+        } catch (error) {
+            console.error('Error enriching with user reviews:', error);
+            return professors;
+        }
+    }
+
     getProfessor(professorId) {
         if (this.processedData.has(professorId)) return this.processedData.get(professorId);
 
@@ -156,7 +204,7 @@ class professorDataProcessor {
         return match?.[1] || null;
     }
 
-    searchProfessors(query, filters = {}) {
+    async searchProfessors(query, filters = {}) {
         try {
             const results = [];
             const searchTerm = query.toLowerCase();
@@ -190,13 +238,14 @@ class professorDataProcessor {
                     });
                 }
             });
-            return results.slice(0, 50);
+            const enrichedResults = await this.enrichWithUserReviews(results);
+            return enrichedResults.slice(0, 50);
         } catch (err) {
             throw err;
         }
     }
 
-    getAllProfessors() {
+    async getAllProfessors() {
         const professors = [];
         this.processedData.forEach(professor => {
             professors.push({
@@ -208,7 +257,8 @@ class professorDataProcessor {
                 averageGPA: professor.averageGPA
             });
         });
-        return professors.sort((a, b) => a.professorId.localeCompare(b.professorId));
+        const enrichedProfessors = await this.enrichWithUserReviews(professors);
+        return enrichedProfessors.sort((a, b) => a.professorId.localeCompare(b.professorId));
     }
 
     needsRefresh() {

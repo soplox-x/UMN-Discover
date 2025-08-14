@@ -22,7 +22,7 @@ const ensureDataLoaded = async () => {
 router.get('/professors', async (req, res) => {
     try {
         await ensureDataLoaded();
-        const professors = processor.getAllProfessors();
+        const professors = await processor.getAllProfessors();
         res.json({
             success: true,
             data: professors,
@@ -47,7 +47,7 @@ router.get('/search', async (req, res) => {
         }
 
         await ensureDataLoaded();
-        const results = processor.searchProfessors(q, { course });
+        const results = await processor.searchProfessors(q, { course });
         res.json({
             success: true,
             data: results,
@@ -65,8 +65,7 @@ router.get('/professor/:professorId', async (req, res) => {
     try {
         const { professorId } = req.params;
         await ensureDataLoaded();
-
-        const professor = processor.getProfessor(professorId);
+        const professor = await processor.getProfessor(professorId);
         if (!professor) {
             return res.status(404).json({
                 success: false,
@@ -91,8 +90,7 @@ router.get('/distribution/:professorId', async (req, res) => {
         const { professorId } = req.params;
 
         await ensureDataLoaded();
-        const professor = processor.getProfessor(professorId);
-
+        const professor = await processor.getProfessor(professorId);
         if (!professor) {
             return res.status(404).json({
                 success: false,

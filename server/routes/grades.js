@@ -22,7 +22,7 @@ const ensureDataLoaded = async () => {
 router.get('/courses', async (req, res) => {
   try {
     await ensureDataLoaded();
-    const courses = processor.getAllCourses();
+    const courses = await processor.getAllCourses();
     res.json({
       success: true,
       data: courses,
@@ -47,7 +47,7 @@ router.get('/search', async (req, res) => {
     }
 
     await ensureDataLoaded();
-    const results = processor.searchCourses(q, { instructor });
+    const results = await processor.searchCourses(q, { instructor });
     res.json({
       success: true,
       data: results,

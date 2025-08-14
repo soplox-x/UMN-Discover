@@ -9,7 +9,7 @@ Just add this line to your `server/.env` file:
 ACCOUNT=false
 ```
 
-# For linux users
+# For Linux users (Ubuntu/Debian)
 ```
 sudo apt -y install postgresql
 sudo -u postgres initdb --locale=C.UTF-8 --encoding=UTF8 -D /var/lib/postgres/data --data-checksums
@@ -17,6 +17,16 @@ sudo systemctl enable --now postgresql
 sudo -u postgres createuser umn-app
 sudo -u postgres createdb umn_discover -O umn-app
 sudo -u postgres psql -c "ALTER USER \"umn-app\" WITH PASSWORD 'umn1234';"
+```
+
+# For Linux users (Arch Linux)
+```
+sudo pacman -Syu --noconfirm postgresql
+sudo -iu postgres initdb --locale=C.UTF-8 --encoding=UTF8 -D /var/lib/postgres/data --data-checksums
+sudo systemctl enable --now postgresql
+sudo -iu postgres createuser umn-app
+sudo -iu postgres createdb umn_discover -O umn-app
+sudo -iu postgres psql -c "ALTER USER \"umn-app\" WITH PASSWORD 'umn1234';"
 ```
 
 # For Windows/macOS users using pgAdmin

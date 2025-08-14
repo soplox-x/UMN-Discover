@@ -6,6 +6,7 @@ import session from 'express-session';
 import passport from './config/passport.js';
 import gradesRouter from './routes/grades.js';
 import professorsRouter from './routes/professors.js';
+import reviewsRouter from './routes/reviews.js';
 
 const app = express(); 
 const PORT = 3001;
@@ -68,6 +69,7 @@ if (useMockAccount) {
 
 app.use('/api/grades', gradesRouter);
 app.use('/api/professors', professorsRouter);
+app.use('/api/reviews', reviewsRouter);
 
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Server connected successfully!' });

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaChartBar, FaGraduationCap, FaUsers } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import ReviewSection from './ReviewSection';
 import '../styles/ProfessorDetail.css';
+import '../styles/ReviewSection.css';
 
-const ProfessorDetail = () => {
+const ProfessorDetail = ({ user }) => {
     const { professorId } = useParams();
     const navigate = useNavigate();
     const [professorData, setProfessorData] = useState(null);
@@ -21,9 +23,10 @@ const ProfessorDetail = () => {
         setLoading(true);
         setError(null);
         try {
+            
             const [professorResponse, distributionResponse] = await Promise.all([
-                fetch(`http://localhost:3001/api/professors/professor/${encodeURIComponent(professorId)}`),
-                fetch(`http://localhost:3001/api/professors/distribution/${encodeURIComponent(professorId)}`)
+                fetch(`/api/professors/professor/${encodeURIComponent(professorId)}`),
+                fetch(`/api/professors/distribution/${encodeURIComponent(professorId)}`)
             ]);
             const professorData = await professorResponse.json();
             const distributionData = await distributionResponse.json();
@@ -218,6 +221,13 @@ const ProfessorDetail = () => {
                     </div>
                 </motion.div>
             </div>
+            
+            <ReviewSection 
+                reviewType="professor"
+                targetId={professorData.professorId}
+                targetName={professorData.professorId}
+                user={user}
+            />
         </div>
     );
 };
