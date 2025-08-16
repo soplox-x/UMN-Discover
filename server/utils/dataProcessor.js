@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import pool from '../config/database.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -121,7 +122,8 @@ class GradeDataProcessor {
           ((course.gradeDistribution[grade] / course.totalStudents) * 100).toFixed(1);
       });
 
-      course.averageGPA = this.calculateGPA(course.gradeDistribution, course.totalStudents);
+      course.csvAverageGPA = this.calculateGPA(course.gradeDistribution, course.totalStudents);
+      course.averageGPA = course.csvAverageGPA;
     });
 
     return courseMap;
@@ -147,11 +149,54 @@ class GradeDataProcessor {
     return countedStudents > 0 ? (totalPoints / countedStudents).toFixed(2) : null;
   }
 
+  async getCombinedRating(courseId) {
+    try {
+      const reviewsResult = await pool.query(`
+        SELECT AVG(rating)::NUMERIC(3,2) as user_rating, COUNT(*) as review_count
+        FROM reviews 
+        WHERE review_type = 'course' AND target_id = $1
+      `, [courseId]);
+
+      const userRating = reviewsResult.rows[0]?.user_rating;
+      const reviewCount = parseInt(reviewsResult.rows[0]?.review_count) || 0;
+      const course = this.getCourse(courseId);
+      const csvGPA = course?.csvAverageGPA;
+
+      if (!userRating && !csvGPA) return null;
+      if (!userRating) return csvGPA;
+      if (!csvGPA) return parseFloat(userRating).toFixed(2);
+      const normalizedUserRating = ((parseFloat(userRating) - 1) / 4) * 4;
+      const csvWeight = Math.max(0.3, 1 / (1 + reviewCount * 0.1)); 
+      const userWeight = 1 - csvWeight;
+
+      const combinedRating = (parseFloat(csvGPA) * csvWeight) + (normalizedUserRating * userWeight);
+      return combinedRating.toFixed(2);
+    } catch (error) {
+      console.error('Error calculating combined rating:', error);
+      return null;
+    }
+  }
+
+  async enrichWithUserReviews(courses) {
+    try {
+      for (const course of courses) {
+        const combinedRating = await this.getCombinedRating(course.courseId);
+        if (combinedRating) {
+          course.averageGPA = combinedRating;
+        }
+      }
+      return courses;
+    } catch (error) {
+      console.error('Error enriching with user reviews:', error);
+      return courses;
+    }
+  }
+
   getCourse(courseId) {
     return this.processedData.get(courseId);
   }
 
-  searchCourses(query, filters = {}) {
+  async searchCourses(query, filters = {}) {
     const results = [];
     const searchTerm = query.toLowerCase();
     const { instructor } = filters;
@@ -184,11 +229,11 @@ class GradeDataProcessor {
         });
       }
     });
-
-    return results.slice(0, 50);
+    const enrichedResults = await this.enrichWithUserReviews(results);
+    return enrichedResults.slice(0, 50);
   }
 
-  getAllCourses() {
+  async getAllCourses() {
     const courses = [];
     this.processedData.forEach(course => {
       courses.push({
@@ -200,7 +245,8 @@ class GradeDataProcessor {
         averageGPA: course.averageGPA
       });
     });
-    return courses.sort((a, b) => a.courseId.localeCompare(b.courseId));
+    const enrichedCourses = await this.enrichWithUserReviews(courses);
+    return enrichedCourses.sort((a, b) => a.courseId.localeCompare(b.courseId));
   }
 
   needsRefresh() {

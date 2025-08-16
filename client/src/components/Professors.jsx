@@ -33,7 +33,7 @@ const Professors = () => {
         setError(null);
 
         try {
-            let url = `http://localhost:3001/api/professors/search?q=${encodeURIComponent(searchQuery)}`;
+            let url = `/api/professors/search?q=${encodeURIComponent(searchQuery)}`;
             if (selectedCourse) url += `&course=${encodeURIComponent(selectedCourse)}`;
 
             const response = await fetch(url);

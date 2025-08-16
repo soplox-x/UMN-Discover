@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaChartBar, FaGraduationCap, FaUsers } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import ReviewSection from './ReviewSection';
 import '../styles/CourseDetail.css';
+import '../styles/ReviewSection.css';
 
-const CourseDetail = () => {
+const CourseDetail = ({ user }) => {
   const { courseId } = useParams();
   const navigate = useNavigate();
   const [courseData, setCourseData] = useState(null);
@@ -215,6 +217,13 @@ const CourseDetail = () => {
           </div>
         </motion.div>
       </div>
+      
+      <ReviewSection 
+        reviewType="course"
+        targetId={courseData.courseId}
+        targetName={courseData.courseId}
+        user={user}
+      />
     </div>
   );
 };

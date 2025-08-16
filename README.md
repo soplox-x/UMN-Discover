@@ -1,4 +1,4 @@
-<h1 align="center">UMN Discover</h1>
+<h1 align="center">UDiscover</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
@@ -12,7 +12,7 @@
 
 # **Overview**
 
-The **UMN Discover App** is a web tool designed to help student life at the University of Minnesota. The platform brings together essential services and functions in one place, making it easier to manage academics, campus navigation, and involvement.
+The **UDiscover App** is a web tool designed to help student life at the University of Minnesota. The platform brings together essential services and functions in one place, making it easier to manage academics, campus navigation, and involvement.
 
 ### Core Features
 
