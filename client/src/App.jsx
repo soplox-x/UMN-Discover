@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import HomePage from './components/HomePage';
 import Calendar from './components/Calendar';
 import GradeSearch from './components/GradeSearch';
+import Map from './components/Map';
 import CourseDetail from './components/CourseDetail';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -154,6 +155,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/map" element={<Map />} />
           <Route path="/professors" element={<Professors />} />
           <Route path="/professor/:professorId" element={<ProfessorDetail />} />
           <Route path="/grades" element={<GradeSearch />} />
