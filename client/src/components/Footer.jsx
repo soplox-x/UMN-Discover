@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="footer-logo-img">
               <FaGraduationCap />
             </div>
-            <h4 className="footer-title">UMN Discover</h4>
+            <h4 className="footer-title">UDiscover</h4>
           </div>
           <p className="footer-description">
             Built by students, for students.
@@ -25,15 +25,17 @@ const Footer = () => {
             </a>
           </div>
           <div className="footer-copyright">
-            © {new Date().getFullYear()} UMN Discover. All rights reserved.
+            © {new Date().getFullYear()} CSCI Social Club. All rights reserved.
           </div>
+          <p className="footer-disclaimer">
+             CSCI Social Club is a registered student organization and is independent from the University of Minnesota. This website is not affiliated with or endorsed by Regents of the University of Minnesota.
+          </p>
         </div>
         <div className="footer-links">
           <div className="footer-links-column">
             <h5 className="footer-links-title">Quick Links</h5>
             <ul>
-              <li><Link to="/clubs">clubs</Link></li>
-              <li><Link to="/map">Map</Link></li>
+              <li><Link to="/about">About</Link></li>
               <li><Link to="/support">Support</Link></li>
               <li><Link to="/privacy">Privacy</Link></li>
             </ul>
@@ -43,8 +45,8 @@ const Footer = () => {
             <ul>
               <li><Link to="/campus-map">Campus Map</Link></li>
               <li><Link to="/calendar">Calendar</Link></li>
-              <li><Link to="/student-services">Student Services</Link></li>
-              <li><Link to="/help-center">Help Center</Link></li>
+              <li><Link to="/clubs">Clubs</Link></li>
+              <li><Link to="/map">Map</Link></li>
             </ul>
           </div>
         </div>

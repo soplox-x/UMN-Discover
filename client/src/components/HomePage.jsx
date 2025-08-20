@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaMapMarkerAlt, FaCalendarAlt, FaUsers, FaGraduationCap, FaUtensils, 
-         FaStar, FaSearch, FaBook, FaMoon, FaSun, FaGithub, FaDiscord } from 'react-icons/fa';
+import {
+  FaMapMarkerAlt, FaCalendarAlt, FaUsers, FaGraduationCap,
+  FaUtensils, FaStar, FaSearch, FaBook, FaMoon, FaSun,
+  FaGithub, FaDiscord, FaChartBar, FaUserTie, FaCoffee
+} from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import AuthModal from './AuthModal';
 import '../styles/HomePage.css';
 
 const HomePage = ({ darkMode, setDarkMode }) => {
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const openAuthModal = () => setShowAuthModal(true);
+  const closeAuthModal = () => setShowAuthModal(false);
+
+  const handleAuthSuccess = (userData, token) => {
+    setShowAuthModal(false);
+  };
+
   const features = [
     {
       icon: <FaSearch className="feature-icon" />,
@@ -39,11 +52,58 @@ const HomePage = ({ darkMode, setDarkMode }) => {
     }
   ];
 
+  const navigationItems = [
+    {
+      icon: <FaChartBar />,
+      title: "Grades",
+      description: "Course grade distributions",
+      path: "/grades",
+      color: "blue"
+    },
+    {
+      icon: <FaUsers />,
+      title: "Clubs",
+      description: "Student organizations",
+      path: "/clubs",
+      color: "green"
+    },
+    {
+      icon: <FaMapMarkerAlt />,
+      title: "Map",
+      description: "Campus navigation",
+      path: "/map",
+      color: "orange"
+    },
+    {
+      icon: <FaCalendarAlt />,
+      title: "Calendar",
+      description: "Schedule & events",
+      path: "/calendar",
+      color: "purple"
+    },
+    {
+      icon: <FaUserTie />,
+      title: "Professors",
+      description: "Faculty reviews",
+      path: "/professors",
+      color: "red"
+    },
+    {
+      icon: <FaCoffee />,
+      title: "Study Spots",
+      description: "Best places to study",
+      path: "/studyspots",
+      color: "yellow"
+    }
+  ];
+
   const quickLinks = [
     { icon: <FaUsers />, label: "Clubs", count: "0" },
     { icon: <FaUsers />, label: "Users", count: "0" },
     { icon: <FaMapMarkerAlt />, label: "Study Spots", count: "0" }
   ];
+
+  const duplicatedFeatures = [...features, ...features, ...features];
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -67,8 +127,13 @@ const HomePage = ({ darkMode, setDarkMode }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            The UMN Discover App brings together essential services and functions in one place, 
-            making it easier to manage academics, campus navigation, and involvement.
+            {/* The UDiscover App brings together essential services and functions in one place, 
+            making it easier to manage academics, campus navigation, and involvement. */}
+            <p className="disclaimer-notice">
+              <strong>Important:</strong> This platform is independent from and not affiliated with 
+              or endorsed by the Regents of the University of Minnesota. The university is not 
+              responsible for the content, functionality, or data practices of this student created platform.
+            </p>
           </motion.p>
           <motion.div 
             className="hero-buttons"
@@ -77,11 +142,11 @@ const HomePage = ({ darkMode, setDarkMode }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             style={{ zIndex: 2, position: 'relative' }}
           >
-            <Link to="/signup" className="primary-button">Get Started</Link>
-            <Link to="/learn-more" className="secondary-button">Learn More</Link>
+            <Link to="/about" className="secondary-button">Learn More</Link>
           </motion.div>
         </div>
       </section>
+
       <section className="quick-stats">
         <div className="stats-container">
           {quickLinks.map((link, index) => (
@@ -100,6 +165,56 @@ const HomePage = ({ darkMode, setDarkMode }) => {
           ))}
         </div>
       </section>
+
+      <section className="navigation-section">
+        <div className="section-header">
+          <motion.h3 
+            className="section-title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Explore UMN
+          </motion.h3>
+          <motion.p 
+            className="section-description"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Quick access to all the tools you need for university life
+          </motion.p>
+        </div>
+        
+        <div className="navigation-grid">
+          {navigationItems.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 * index }}
+            >
+              <Link to={item.path} className={`nav-item ${item.color}`}>
+                <motion.div
+                  className="nav-item-content"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="nav-icon-container">
+                    {item.icon}
+                  </div>
+                  <div className="nav-text">
+                    <h4 className="nav-title">{item.title}</h4>
+                    <p className="nav-description">{item.description}</p>
+                  </div>
+                  <div className="nav-arrow">→</div>
+                </motion.div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       <section className="features-section">
         <div className="section-header">
           <motion.h3 
@@ -120,60 +235,95 @@ const HomePage = ({ darkMode, setDarkMode }) => {
           </motion.p>
         </div>
         
-        <div className="features-grid">
-          {features.map((feature, index) => (
-            <motion.div 
-              key={index} 
-              className={`feature-card ${feature.color}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 * index }}
-              whileHover={{ scale: 1.03 }}
-            >
-              <div className="feature-icon-container">
-                {feature.icon}
-              </div>
-              <h4 className="feature-title">{feature.title}</h4>
-              <p className="feature-description">{feature.description}</p>
-            </motion.div>
-          ))}
+        <div className="features-carousel-container">
+          <div className="features-carousel">
+            <div className="features-track">
+              {duplicatedFeatures.map((feature, index) => (
+                <div 
+                  key={index} 
+                  className={`feature-card ${feature.color}`}
+                >
+                  <div className="feature-icon-container">
+                    {feature.icon}
+                  </div>
+                  <h4 className="feature-title">{feature.title}</h4>
+                  <p className="feature-description">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+
       <section className="cta-section">
         <div className="cta-content">
-          <motion.h3 
+          <motion.h3
             className="cta-title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Ready to Discover UMN?
+            Project Contributors
           </motion.h3>
-          <motion.p 
+          <motion.p
             className="cta-description"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Crate your profile today and start exploring.
+            This are people who have contributed to the project either through code, design, or other means.
           </motion.p>
-          <motion.div 
-            className="cta-buttons"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Link to="/create-profile" className="primary-button">
-              <FaUsers className="button-icon" />
-              <span>Create Profile</span>
-            </Link>
-            <Link to="/explore" className="secondary-button">
-              <FaMapMarkerAlt className="button-icon" />
-              <span>Explore Campus</span>
-            </Link>
-          </motion.div>
+          <div className="contributors-grid">
+            {[ 
+              { name: "BlueYellow-Green", githubUser: "BlueYellow-Green", discord: "https://discordapp.com/users/733848884228521994" },
+              { name: "CleverDeer", githubUser: "CleverDeer", discord: "https://discordapp.com/users/446021396254949376" },
+              { name: "madebyethan", githubUser: "madebyethan", discord: "https://discordapp.com/users/1295776866707177534" },
+              { name: "MetaZoan1", githubUser: "MetaZoan1", discord: "https://discordapp.com/users/388807710176444426" },
+              { name: "NAMERIO", githubUser: "NAMERIO", discord: "https://discordapp.com/users/605043565856423955" },
+              { name: "tomhomestar", githubUser: "tomhomestar", discord: "https://discordapp.com/users/1317956337270915113" },
+            ].map((contributor, index) => (
+              <motion.div
+                key={index}
+                className="contributor-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
+              >
+                <img
+                  src={`https://github.com/${contributor.githubUser}.png`}
+                  alt={contributor.name}
+                  className="contributor-pfp"
+                />
+                <h4 className="contributor-name">{contributor.name}</h4>
+                <div className="contributor-links">
+                  <a
+                    href={`https://github.com/${contributor.githubUser}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${contributor.name} GitHub`}
+                  >
+                    <FaGithub />
+                  </a>
+                  <a
+                    href={contributor.discord}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${contributor.name} Discord`}
+                    style={{ marginLeft: '8px' }}
+                  >
+                    <FaDiscord />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={closeAuthModal}
+        onAuthSuccess={handleAuthSuccess}
+      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-<h1 align="center">UMN Discover</h1>
+<h1 align="center">UDiscover</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
@@ -12,7 +12,7 @@
 
 # **Overview**
 
-The **UMN Discover App** is a web tool designed to help student life at the University of Minnesota. The platform brings together essential services and functions in one place, making it easier to manage academics, campus navigation, and involvement.
+The **UDiscover App** is a web tool designed to help student life at the University of Minnesota. The platform brings together essential services and functions in one place, making it easier to manage academics, campus navigation, and involvement.
 
 ### Core Features
 
@@ -97,5 +97,17 @@ ex:
 The development server will start (default is http://localhost:3000)
 > (Note: The port may change later depending on setup)
 
+## If you **do NOT** want to enable accounts
+You can run the project without Google OAuth or the database.  
+
+Just add this line to your `server/.env` file:
+
+```env
+ACCOUNT=false
+```
+
+# **Attributions**
+Grade and SRT data obtained from [Social Coding @ UMN](https://www.socialcoding.net) via the University of Minnesota [Office of Data Access and Privacy](https://ogc.umn.edu/data-access-and-privacy) and 
+the [Office of Undergraduate Education Academic Support Resources.](https://undergrad.umn.edu/units/asr)
 
 <p align="center"><i>Built by students, for students — UMN</i></p>

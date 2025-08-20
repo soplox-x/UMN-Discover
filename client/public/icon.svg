@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <path d="M100,10 L170,50 L150,160 L100,190 L50,160 L30,50 Z"
+        fill="#7A0019" stroke="#FFCC33" stroke-width="4"/>
+  <text
+    x="50%"
+    y="52%"
+    text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-weight="900"
+    font-size="85"
+    fill="#FFCC33"
+    textLength="70"
+    lengthAdjust="spacingAndGlyphs"
+  >
+    G
+  </text>
+  <text
+    x="50%"
+    y="70%"
+    text-anchor="middle"
+    font-family="Montserrat, Futura, Arial, sans-serif"
+    font-weight="600"
+    font-size="16"
+    fill="#FFCC33"
+    letter-spacing="2"
+    textLength="90"
+    lengthAdjust="spacingAndGlyphs"
+  >
+    DISCOVER
+  </text>
+</svg>
