@@ -24,7 +24,7 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
 
   const fetchReviews = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/reviews/${reviewType}/${encodeURIComponent(targetId)}`);
+      const response = await fetch(`/api/reviews/${reviewType}/${encodeURIComponent(targetId)}`);
       const data = await response.json();
       
       if (data.success) {
@@ -41,7 +41,7 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
   const fetchUserReview = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`http://localhost:3001/api/reviews/user/${reviewType}/${encodeURIComponent(targetId)}`, {
+      const response = await fetch(`/api/reviews/user/${reviewType}/${encodeURIComponent(targetId)}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -78,7 +78,7 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
 
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`http://localhost:3001/api/reviews/${reviewType}/${encodeURIComponent(targetId)}`, {
+      const response = await fetch(`/api/reviews/${reviewType}/${encodeURIComponent(targetId)}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
 
     try {
       const token = localStorage.getItem('authToken');
-      const response = await fetch(`http://localhost:3001/api/reviews/${reviewType}/${encodeURIComponent(targetId)}`, {
+      const response = await fetch(`/api/reviews/${reviewType}/${encodeURIComponent(targetId)}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -127,7 +127,7 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
           comment: '',
           isAnonymous: false
         });
-        fetchReviews(); // Refresh reviews to update stats
+        fetchReviews();
       } else {
         alert(data.error);
       }
