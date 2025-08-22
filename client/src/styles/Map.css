@@ -1,0 +1,28 @@
+/* NGL I HAVE NO IDEA WHAT THIS STUFF IS DOING BESIDES #map */
+/* 
+NOTES:
+  - ADD CSS FOR NODE BUTTONS
+  - 
+*/
+
+.App {
+    font-family:sans-serif;
+    text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 10;
+  padding: 0;
+}
+
+#root {
+    height: 100vh;
+}
+
+#map {
+  height: 600px;
+  width: 95%;
+  margin: 20px auto;
+}
+
