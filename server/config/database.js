@@ -290,6 +290,29 @@ export const initializeDatabase = async () => {
 
     await pool.query(`DROP TABLE IF EXISTS group_memberships CASCADE`);
     await pool.query(`DROP TABLE IF EXISTS groups CASCADE`);
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS reviews (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        review_type VARCHAR(20) NOT NULL CHECK (review_type IN ('professor', 'course')),
+        target_id VARCHAR(255) NOT NULL,
+        rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+        comment TEXT,
+        location VARCHAR(255),
+        is_anonymous BOOLEAN DEFAULT false,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UNIQUE(user_id, review_type, target_id)
+      )
+    `);
+    await pool.query(`
+      CREATE INDEX IF NOT EXISTS idx_reviews_target 
+      ON reviews(review_type, target_id)
+    `);
+    await pool.query(`
+      CREATE INDEX IF NOT EXISTS idx_reviews_user 
+      ON reviews(user_id)
+    `);
 
     console.log('Database initialized successfully with Google OAuth support and profile enhancements');
   } catch (error) {

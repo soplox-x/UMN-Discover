@@ -157,7 +157,8 @@ function App() {
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/map" element={<Map />} />
           <Route path="/professors" element={<Professors />} />
-          <Route path="/professor/:professorId" element={<ProfessorDetail />} />
+          <Route path="/professor/:professorId" element={<ProfessorDetail user={user} />} />
+          <Route path="/course/:courseId" element={<CourseDetail user={user} />} />
           <Route path="/grades" element={<GradeSearch />} />
           <Route path="/course/:courseId" element={<CourseDetail />} />
           <Route path="/studyspots" element={<StudySpots />} />

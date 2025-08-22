@@ -6,6 +6,8 @@ import session from 'express-session';
 import passport from './config/passport.js';
 import gradesRouter from './routes/grades.js';
 import professorsRouter from './routes/professors.js';
+import reviewsRouter from './routes/reviews.js';
+import professorDataProcessor from './utils/professorDataProcessor.js';
 
 const app = express(); 
 const PORT = 3001;
@@ -68,10 +70,22 @@ if (useMockAccount) {
 
 app.use('/api/grades', gradesRouter);
 app.use('/api/professors', professorsRouter);
+app.use('/api/reviews', reviewsRouter);
 
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Server connected successfully!' });
 });
+
+professorDataProcessor.initializeFromFile();
+
+setTimeout(() => {
+  professorDataProcessor.refreshProfessorList();
+}, 10 * 1000); 
+
+const TWENTY_FOUR_HOURS_IN_MS = 24 * 60 * 60 * 1000;
+setInterval(() => {
+  professorDataProcessor.refreshProfessorList();
+}, TWENTY_FOUR_HOURS_IN_MS);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

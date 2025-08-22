@@ -173,18 +173,6 @@ router.get('/users/:identifier', authenticateTokenOptional, async (req, res) => 
       `, [parseInt(identifier)]);
     }
 
-    console.log('Query result rows:', result.rows.length);
-    if (result.rows.length > 0) {
-      console.log('Found user:', result.rows[0].username);
-    }
-
-    if (result.rows.length === 0) {
-      return res.status(404).json({
-        success: false,
-        error: 'User not found'
-      });
-    }
-
     const user = result.rows[0];
     
     let isFollowing = false;

@@ -1,128 +1,70 @@
 import express from 'express';
-import ProfessorDataProcessor from '../utils/professorDataProcessor.js';
+import processor from '../utils/professorDataProcessor.js';
 
 const router = express.Router();
-const processor = new ProfessorDataProcessor();
-
-let isProcessing = false;
-
-const ensureDataLoaded = async () => {
-    if (processor.needsRefresh() && !isProcessing) {
-        isProcessing = true;
-        try {
-            await processor.processAllData();
-        } catch (error) {
-            console.error('Failed to process professor data:', error);
-        } finally {
-            isProcessing = false;
-        }
-    }
-};
 
 router.get('/professors', async (req, res) => {
-    try {
-        await ensureDataLoaded();
-        const professors = processor.getAllProfessors();
-        res.json({
-            success: true,
-            data: professors,
-            total: professors.length
-        });
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            error: 'Failed to fetch professors'
-        });
-    }
+    res.json({ success: true, data: [], total: 0 });
 });
 
 router.get('/search', async (req, res) => {
     try {
-        const { q, course } = req.query;
+        const { q } = req.query;
         if (!q || q.length < 2) {
-            return res.status(400).json({
-                success: false,
-                error: 'Search query must be at least 2 characters'
-            });
+            return res.status(400).json({ success: false, error: 'Search query must be at least 2 characters' });
         }
-
-        await ensureDataLoaded();
-        const results = processor.searchProfessors(q, { course });
-        res.json({
-            success: true,
-            data: results,
-            total: results.length
-        });
+        const results = await processor.searchProfessors(q);
+        res.json({ success: true, data: results, total: results.length });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            error: 'Search failed'
-        });
+        res.status(500).json({ success: false, error: 'Search failed' });
     }
 });
 
 router.get('/professor/:professorId', async (req, res) => {
     try {
         const { professorId } = req.params;
-        await ensureDataLoaded();
-
-        const professor = processor.getProfessor(professorId);
+        const professor = await processor.getProfessor(professorId);
         if (!professor) {
-            return res.status(404).json({
-                success: false,
-                error: 'Professor not found'
-            });
+            return res.status(404).json({ success: false, error: 'Professor not found' });
         }
-
-        res.json({
-            success: true,
-            data: professor
-        });
+        res.json({ success: true, data: professor });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            error: 'Failed to fetch professor details'
-        });
+        res.status(500).json({ success: false, error: 'Failed to fetch professor details' });
     }
 });
 
 router.get('/distribution/:professorId', async (req, res) => {
     try {
         const { professorId } = req.params;
-
-        await ensureDataLoaded();
-        const professor = processor.getProfessor(professorId);
-
+        const professor = await processor.getProfessor(professorId);
+        
         if (!professor) {
-            return res.status(404).json({
-                success: false,
-                error: 'Professor not found'
-            });
+            return res.status(404).json({ success: false, error: 'Professor not found' });
         }
 
-        const distribution = professor.gradeDistribution;
-        const totalStudents = professor.totalStudents;
-
+        const { gradeDistribution, totalStudents, averageGPA } = professor;
         const percentages = {};
-        Object.keys(distribution).forEach(grade => {
-            percentages[grade] = ((distribution[grade] / totalStudents) * 100).toFixed(1);
+        Object.keys(gradeDistribution).forEach(grade => {
+            const studentCountForGrade = gradeDistribution[grade] || 0;
+            if (totalStudents > 0) {
+                 percentages[grade] = ((studentCountForGrade / totalStudents) * 100).toFixed(1);
+            } else {
+                 percentages[grade] = '0.0';
+            }
         });
 
         res.json({
             success: true,
             data: {
                 professorId,
-                distribution,
+                distribution: gradeDistribution,
                 percentages,
                 totalStudents,
-                averageGPA: professor.averageGPA
+                averageGPA
             }
         });
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            error: 'Failed to fetch grade distribution'
-        });
+        res.status(500).json({ success: false, error: 'Failed to fetch grade distribution' });
     }
 });
 
