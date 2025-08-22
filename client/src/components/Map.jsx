@@ -12,6 +12,7 @@ export default function Map() {
   const map = useRef(null);
   const routeNodes = useRef(L.layerGroup());
   const routeLines = useRef(L.layerGroup());
+  const routeDistance = useRef(0);
   const allNodesLayer = useRef(L.layerGroup());
   const allLinesLayer = useRef(L.layerGroup());
 
@@ -97,6 +98,28 @@ export default function Map() {
   // pathfinder using Dijkstras algorithm. This was made using knowledge
   // learned from this video: https://www.youtube.com/watch?v=bZkzH5x0SKU
   function pathFinder(startCoords, destCoords, geoData) {
+    // helper function to convert the coordinates to distance in miles
+    function getHaversineDistance(coords1, coords2) {
+      const R = 6371e3;
+      const lat1 = coords1[1];
+      const lon1 = coords1[0];
+      const lat2 = coords2[1];
+      const lon2 = coords2[0];
+
+      const φ1 = (lat1 * Math.PI) / 180;
+      const φ2 = (lat2 * Math.PI) / 180;
+      const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+      const Δλ = ((lon2 - lon1) * Math.PI) / 180;
+
+      const a =
+        Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+        Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+      const d = R * c;
+      const miles = d * 0.000621371;
+      return miles;
+    }
     // initializing everything
     const startNode = startCoords.reverse().join(",");
     const destNode = destCoords.reverse().join(",");
@@ -139,10 +162,7 @@ export default function Map() {
 
           const newDistance =
             distances[current] +
-            Math.sqrt(
-              (curCoordsNum[0] - neighborCoordsNum[0]) ** 2 +
-                (curCoordsNum[1] - neighborCoordsNum[1]) ** 2
-            );
+            getHaversineDistance(curCoordsNum, neighborCoordsNum);
 
           // if new path is shorter, replace old one
           if (newDistance < distances[neighbor]) {
@@ -160,6 +180,7 @@ export default function Map() {
       path.push(cur.split(",").map(Number).reverse());
     }
 
+    routeDistance.current = distances[destNode];
     return path.reverse();
   }
 
@@ -292,6 +313,9 @@ export default function Map() {
     if (start.length > 0 && end.length > 0) {
       const path = pathFinder(start, end, geoJsonData);
       drawRoute(path, "green", false);
+      alert(`Total route distance: ${routeDistance.current.toFixed(2)} miles
+      Outside walking distance: ${0} miles
+      ETA: ${((routeDistance.current / 3) * 60).toFixed(1)} minutes`);
     }
   }, [start, end]);
 
