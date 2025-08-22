@@ -5,22 +5,15 @@ import axios from 'axios';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// --- Configuration ---
 const PROFESSOR_MAP_PATH = path.join(__dirname, '../../data/professor_map.json');
-const MAX_PROFESSOR_ID = 8000; // The highest professor ID to check
-// ---
+const MAX_PROFESSOR_ID = 8000;
 
 class ProfessorDataProcessor {
     constructor() {
         this.professorCache = new Map();
         this.professorIndex = [];
-        this.isUpdating = false; // Prevents multiple updates from running at once
+        this.isUpdating = false;
     }
-
-    /**
-     * Loads the initial professor map from the JSON file for a fast server start.
-     */
     initializeFromFile() {
         try {
             if (fs.existsSync(PROFESSOR_MAP_PATH)) {
@@ -36,10 +29,6 @@ class ProfessorDataProcessor {
         }
     }
 
-    /**
-     * Fetches the entire professor list from the API in the background.
-     * It clears the old list and replaces it with the newly fetched data.
-     */
     async refreshProfessorList() {
         if (this.isUpdating) {
             console.log('[ProfessorDataProcessor] Update already in progress. Skipping.');
@@ -48,8 +37,7 @@ class ProfessorDataProcessor {
 
         console.log('[ProfessorDataProcessor] Starting background refresh of professor list...');
         this.isUpdating = true;
-        const newProfessorList = []; // Start with a fresh, empty list
-
+        const newProfessorList = []; 
         try {
             const fetchProfessor = async (id) => {
                 try {
@@ -59,7 +47,6 @@ class ProfessorDataProcessor {
                         if (name && id) newProfessorList.push({ name, id });
                     }
                 } catch (error) {
-                    // Ignore 404s, but log other errors
                     if (error.response?.status !== 404) console.error(`Error fetching ID ${id}: ${error.message}`);
                 }
             };
@@ -72,11 +59,7 @@ class ProfessorDataProcessor {
                 }
                 await Promise.all(promises);
             }
-
-            // 1. Write the new, updated list to the file
             fs.writeFileSync(PROFESSOR_MAP_PATH, JSON.stringify(newProfessorList, null, 2));
-            
-            // 2. Atomically replace the in-memory index with the new list
             this.professorIndex = newProfessorList;
 
             console.log(`[ProfessorDataProcessor] Background refresh complete. Found ${this.professorIndex.length} professors.`);
@@ -84,13 +67,9 @@ class ProfessorDataProcessor {
         } catch (error) {
             console.error('[ProfessorDataProcessor] A critical error occurred during the background refresh:', error);
         } finally {
-            this.isUpdating = false; // Allow the next scheduled update to run
+            this.isUpdating = false;
         }
     }
-
-    /**
-     * Searches the current in-memory professor list.
-     */
     async searchProfessors(query) {
         const searchTerm = query.toLowerCase();
         return this.professorIndex
@@ -102,16 +81,12 @@ class ProfessorDataProcessor {
                 description: "Professor"
             }));
     }
-
-    // The getProfessor method remains the same, it will always fetch live data for a specific professor.
     async getProfessor(professorId) {
-        // ... (code from the previous correct version)
         if (this.professorCache.has(professorId)) {
             return this.professorCache.get(professorId);
         }
         try {
             const response = await axios.get(`https://umn.lol/api/prof/${professorId}`);
-            // ... etc
             if (!response.data?.success) return null;
             const apiData = response.data.data;
             const overallGradeDistribution = {};
@@ -154,7 +129,5 @@ class ProfessorDataProcessor {
         return countedStudents > 0 ? (totalPoints / countedStudents).toFixed(2) : null;
     }
 }
-
-// Create and export a single instance of the processor
 const professorDataProcessor = new ProfessorDataProcessor();
 export default professorDataProcessor;

@@ -7,8 +7,6 @@ import passport from './config/passport.js';
 import gradesRouter from './routes/grades.js';
 import professorsRouter from './routes/professors.js';
 import reviewsRouter from './routes/reviews.js';
-
-// Import the professor data processor to manage its lifecycle
 import professorDataProcessor from './utils/professorDataProcessor.js';
 
 const app = express(); 
@@ -78,24 +76,16 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'Server connected successfully!' });
 });
 
-
-// --- PROFESSOR DATA LIFECYCLE MANAGEMENT ---
-// 1. Immediately load the existing professor list from the file for a fast server start.
 professorDataProcessor.initializeFromFile();
 
-// 2. Trigger the first background refresh 10 seconds after the server starts.
-//    This fetches the latest professor list without slowing down the initial startup.
 setTimeout(() => {
   professorDataProcessor.refreshProfessorList();
 }, 10 * 1000); 
 
-// 3. Schedule the background refresh to run automatically every 24 hours.
 const TWENTY_FOUR_HOURS_IN_MS = 24 * 60 * 60 * 1000;
 setInterval(() => {
   professorDataProcessor.refreshProfessorList();
 }, TWENTY_FOUR_HOURS_IN_MS);
-// --- END OF NEW SECTION ---
-
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

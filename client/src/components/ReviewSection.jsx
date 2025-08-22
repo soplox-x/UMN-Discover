@@ -92,7 +92,7 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
       if (data.success) {
         setUserReview(data.data);
         setShowReviewForm(false);
-        fetchReviews(); // Refresh reviews to update stats
+        fetchReviews(); 
       } else {
         alert(data.error);
       }
@@ -178,8 +178,6 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
         <h2>Student Reviews</h2>
         <p>Real feedback from UMN students</p>
       </div>
-
-      {/* Overall Rating Stats */}
       {stats && parseInt(stats.total_reviews) > 0 && (
         <div className="rating-overview">
           <div className="overall-rating">
@@ -212,8 +210,6 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
           </div>
         </div>
       )}
-
-      {/* User's Review Section */}
       {user && (
         <div className="user-review-section">
           {userReview ? (
@@ -262,8 +258,6 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
           )}
         </div>
       )}
-
-      {/* Review Form Modal */}
       <AnimatePresence>
         {showReviewForm && (
           <motion.div
@@ -345,8 +339,6 @@ const ReviewSection = ({ reviewType, targetId, targetName, user }) => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Reviews List */}
       <div className="reviews-list">
         {reviews.length > 0 ? (
           reviews.map((review, index) => (

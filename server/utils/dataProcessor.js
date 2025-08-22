@@ -1,7 +1,6 @@
 import axios from 'axios';
 import pool from '../config/database.js';
 
-// Define the list of departments you want to pull data for
 const DEPARTMENTS_TO_FETCH = ['CSCI', 'MATH', 'EE', 'STAT', 'CHEM', 'PHYS', 'BIOL'];
 
 class GradeDataProcessor {
@@ -9,10 +8,6 @@ class GradeDataProcessor {
     this.processedData = new Map();
     this.lastProcessed = null;
   }
-
-  /**
-   * Fetches data from the umn.lol API for all specified departments and processes it.
-   */
   async processAllData() {
     console.log('Refreshing course data from umn.lol API...');
     const courseMap = new Map();
@@ -33,10 +28,8 @@ class GradeDataProcessor {
               description: course.class_desc,
               totalStudents: course.total_students,
               gradeDistribution: course.total_grades,
-              instructors: [], // NOTE: Instructor-specific data is not available via this API endpoint.
+              instructors: [],
             };
-
-            // Calculate GPA based on the fetched grade distribution
             courseData.csvAverageGPA = this.calculateGPA(courseData.gradeDistribution, courseData.totalStudents);
             courseData.averageGPA = courseData.csvAverageGPA;
 
@@ -128,10 +121,6 @@ class GradeDataProcessor {
   async searchCourses(query, filters = {}) {
     const results = [];
     const searchTerm = query.toLowerCase();
-    
-    // NOTE: Instructor filter is removed as instructor data is no longer available.
-    // const { instructor } = filters;
-
     this.processedData.forEach(course => {
       const matchesSearch =
         course.courseId.toLowerCase().includes(searchTerm) ||
@@ -145,7 +134,7 @@ class GradeDataProcessor {
           description: course.description,
           totalStudents: course.totalStudents,
           averageGPA: course.averageGPA,
-          instructors: course.instructors // Will be empty
+          instructors: course.instructors
         });
       }
     });

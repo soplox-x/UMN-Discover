@@ -49,7 +49,6 @@ const Professors = () => {
     };
 
     const viewProfessorDetails = (professor) => {
-        // This correctly navigates using the professor's ID from the search result
         navigate(`/professor/${encodeURIComponent(professor.professorId)}`);
     };
 
@@ -117,11 +116,9 @@ const Professors = () => {
                                     onClick={() => viewProfessorDetails(professor)}
                                 >
                                     <div className="professors-header">
-                                        {/* FIX: Display the professor's name, not their ID */}
                                         <h4 className="professors-id">{professor.name}</h4>
                                         <FaArrowRight className="arrow-icon-professors" />
                                     </div>
-                                    {/* FIX: Removed the stats section that was causing the crash */}
                                     <p className="professors-description">Click to view details.</p>
                                 </motion.div>
                             ))}
@@ -137,7 +134,7 @@ const Professors = () => {
                     >
                         <h3>Popular Searches</h3>
                         <div className="suggestion-tags-professors">
-                            {['Nathan Taylor', 'Sungmin Park', 'Chris Dovolis', 'Dan Orban', 'Jack Kolb', 'Bernardo Bianco'].map((suggestion, index) => (
+                            {['Nathan Taylor', 'Chris Dovolis','Jack Kolb', 'Bernardo Bianco'].map((suggestion, index) => (
                                 <motion.button
                                     key={suggestion}
                                     className="suggestion-tag-professors"

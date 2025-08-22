@@ -1,16 +1,9 @@
 import express from 'express';
-// 1. Import the shared processor instance directly
 import processor from '../utils/professorDataProcessor.js';
 
 const router = express.Router();
 
-// 2. The line "const processor = new ProfessorDataProcessor()" has been removed.
-
-// 3. The "ensureInitialized" function is no longer needed here,
-//    as initialization is now handled globally in your index.js file.
-
 router.get('/professors', async (req, res) => {
-    // This endpoint relies on search, so returning an empty array is correct.
     res.json({ success: true, data: [], total: 0 });
 });
 
