@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaSearch, FaArrowRight, FaFilter, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaArrowRight, FaGraduationCap, FaChartBar, FaStar } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import '../styles/Professors.css'
+import '../styles/Professors.css';
+
+const Stat = ({ icon, value, label }) => (
+    <div className="stat-professors">
+        {icon}
+        {value !== undefined ? (
+            <span>{label}{value}</span>
+        ) : (
+            <span className="stat-loading">...</span>
+        )}
+    </div>
+);
 
 const Professors = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [showFilters, setShowFilters] = useState(false);
-    const [selectedCourse, setSelectedCourses] = useState('');
     const navigate = useNavigate();
-    const filterEnabled = false; // Filter is currently disabled
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -22,24 +30,39 @@ const Professors = () => {
                 setSearchResults([]);
             }
         }, 300);
-
         return () => clearTimeout(timeoutId);
-    }, [searchQuery, selectedCourse]);
+    }, [searchQuery]);
+    useEffect(() => {
+        if (searchResults.length === 0 || searchResults[0].totalStudents !== undefined) {
+            return;
+        }
+        const fetchDetailsForResults = async () => {
+            const detailPromises = searchResults.map(prof =>
+                fetch(`/api/professors/professor/${prof.professorId}`).then(res => res.json())
+            );
+            const detailResults = await Promise.all(detailPromises);
+            const updatedResults = searchResults.map(originalProf => {
+                const detail = detailResults.find(d => d.success && d.data.professorId === originalProf.professorId);
+                return detail ? { ...originalProf, ...detail.data } : originalProf;
+            });
+
+            setSearchResults(updatedResults);
+        };
+        fetchDetailsForResults();
+    }, [searchResults]);
 
     const searchProfessors = async () => {
         setLoading(true);
         setError(null);
         try {
-            let url = `/api/professors/search?q=${encodeURIComponent(searchQuery)}`;
-            if (selectedCourse) url += `&course=${encodeURIComponent(selectedCourse)}`;
-
+            const url = `/api/professors/search?q=${encodeURIComponent(searchQuery)}`;
             const response = await fetch(url);
             const data = await response.json();
-
             if (data.success) {
                 setSearchResults(data.data);
             } else {
                 setError(data.error);
+                setSearchResults([]);
             }
         } catch (err) {
             setError('Failed to search professors');
@@ -49,7 +72,7 @@ const Professors = () => {
     };
 
     const viewProfessorDetails = (professor) => {
-        navigate(`/professor/${encodeURIComponent(professor.professorId)}`);
+        navigate(`/professor/${professor.professorId}`);
     };
 
     return (
@@ -100,9 +123,8 @@ const Professors = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <div className="results-header=professors">
+                        <div className="results-header-professors">
                             <h3>Found {searchResults.length} professors</h3>
-                            <p>Click on any professor to view detailed rate distribution</p>
                         </div>
                         <div className="results-grid-professors">
                             {searchResults.map((professor, index) => (
@@ -119,7 +141,23 @@ const Professors = () => {
                                         <h4 className="professors-id">{professor.name}</h4>
                                         <FaArrowRight className="arrow-icon-professors" />
                                     </div>
-                                    <p className="professors-description">Click to view details.</p>
+                                    <div className="professors-stats">
+                                        <Stat
+                                            icon={<FaGraduationCap className="stat-icon-professors" />}
+                                            value={professor.totalStudents?.toLocaleString()}
+                                            label=""
+                                        />
+                                        <Stat
+                                            icon={<FaChartBar className="stat-icon-professors" />}
+                                            value={professor.averageGPA}
+                                            label="Avg. GPA: "
+                                        />
+                                        <Stat
+                                            icon={<FaStar className="stat-icon-professors" />}
+                                            value={professor.rmpScore}
+                                            label="RMP: "
+                                        />
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>
@@ -154,6 +192,6 @@ const Professors = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Professors;
